@@ -1,0 +1,57 @@
+*{
+  box-sizing: border-box;
+  /* outline: 1px solid red; */
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main{
+  background: blue;
+}
+
+/* //--------------------------regestration */
+.containerRegestration,
+.containerLogin{
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.containerRegestration input,
+.containerLogin input{
+  display: flex;
+  height: 30px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.conteiner-form form{
+  padding: 10px;
+  border: 1px solid gray;
+}
+.conteiner-form form>div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#submit-registr{
+  display: flex;
+  margin-left: auto;
+}
+.conteiner-form form>div.error{
+  display: flex;
+  justify-content: flex-end;
+  color: red;
+  font-size: 12px;
+  height: 12px;
+  margin-top: -10px;
+}
+/* //--------------------------regestration */
