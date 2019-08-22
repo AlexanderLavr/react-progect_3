@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from './components/login';
 import Main from './components/main';
-import Regestration from './components/regestration';
+import Regestration from './actions/actRegictration';
 import './App.css';
 import { Provider } from "react-redux";
 import configureStore from "./redux/store";

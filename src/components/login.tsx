@@ -67,7 +67,7 @@ class Login extends React.Component<any>{
 
 export default connect(
     state=>({
-        myStore: state
+        // myStore: state
     }),
     dispatch=>({
         addObj: (state:any)=>{
