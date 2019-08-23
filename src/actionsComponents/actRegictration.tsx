@@ -1,13 +1,18 @@
 import {RegistrationComponent} from '../components/regestration';
 import { connect } from 'react-redux';
 import {RPr} from '../redux/regestration/actions';
-// import GeneralError from '../components/error';
 
-export const goRegistration = (propsElement:{}):any => {
-    if(propsElement){
-        return 'Сервер не отвечает, поробуйте позже!'
-    }
-}
+
+// export const goRegistration = (propsElement:{}):any => {
+//     if(propsElement){
+//         return 'Сервер не отвечает, поробуйте позже!'
+//     }
+// }
+// export const successRegistration = (propsElement:{}):any => {
+//     if(propsElement){
+//         return 'Сервер не отвечает, поробуйте позже!'
+//     }
+// }
 
 export const parseRequestServer = (data:any, regObj:any) =>{
     let status = false;
@@ -39,7 +44,7 @@ export const validRegistration = (obj:any) => {
     let stateValid = 0;
 
     const inpRegExpr = new RegExp(/[a-zA-Z]{3,}/i);
-    const passWordExpr = new RegExp(/[a-zA-Z0-9]{3,}/i);
+    const passWordExpr = new RegExp(/[a-zA-Z0-9]{3,}/);
     const emailRegExpr = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
 
     if(!inpRegExpr.test(obj.obj.firstname)){
@@ -74,6 +79,8 @@ export const mapStateToProps = (state: any) => ({
     errorPassword: state.regestration.errorPassword,
 
     successRegister: state.regestration.successRegister,
+    error: state.regestration.error
+    
 });
 
 

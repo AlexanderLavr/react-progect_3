@@ -1,15 +1,11 @@
 import React from 'react';
-// import { doRegistration } from '../redux/regestration/sagasRegestration';
-// import Error from './error';
-// import { connect } from 'react-redux';
-import {RegistrationState, LoginRequest} from '../redux/regestration/types';
-// import { Redirect } from 'react-router';
-// import {RPr} from '../redux/regestration/actions';
-// import {mapStateToProps} from '../actions/actRegictration'
-import {goRegistration} from '../actions/actRegictration';
+import {RegistrationState} from '../redux/regestration/types';
+import successRegistration from '../actionsComponents/actRegictration';
+import Error from '../components/error';
+import { Redirect } from 'react-router';
 
 export class RegistrationComponent extends React.Component<any>{
-    state:any = {
+    state:RegistrationState = {
         firstname: '',
         secondname: '',
         email: '',
@@ -26,16 +22,12 @@ export class RegistrationComponent extends React.Component<any>{
     }
 
     render(){
-        // if(this.state.successRegister){
-        //     return (<Redirect to="/login" />);
-        // }
-        // console.log(typeof(this.props))
-   
+        // successRegistration(this.props.successRegister)
         return(
             <div className="containerRegestration">
               <h2>Regestration</h2>
                 <div className="conteiner-form">
-                    <form>
+                    <form><b><Error/></b>
                         <div className="item-firstname">
                             <div className="firstname-left">FirstName:</div>
                             <div className="firstname-right">
@@ -68,7 +60,7 @@ export class RegistrationComponent extends React.Component<any>{
                             <button onClick={(e) => this.submitRegistration(e)} id="submit-registr">Registration</button>
                         </div>
                     </form>
-                    <div style={{color: 'red', height: '20px'}}>{goRegistration(this.props.successRegister)}</div>
+                    <div style={{color: 'red', height: '20px'}}>{this.props.error}</div>
                 </div>
             </div>
         )
