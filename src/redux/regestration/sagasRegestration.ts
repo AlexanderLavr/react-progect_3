@@ -2,8 +2,10 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import {RPr, valReg} from '../../redux/regestration/actions';
 import {parseRequestServer, validRegistration} from '../../actionsComponents/actRegictration';
 
+
 export function* doRegistration(): IterableIterator<any>{
     yield takeEvery('DO_REGISTER', function*(obj:any){
+        
         try {
             let stateValid, errorObj
             let resultValid = {
@@ -30,6 +32,7 @@ export function* doRegistration(): IterableIterator<any>{
                     })
                     yield put({type:RPr.ADD_USER, obj, error: 'Success registration!'}) //=> add User
                     yield put({type:RPr.SUCCESS_REGISTRATION})//=>change state in store
+                   
                 }else{
                     yield put({type:RPr.USER_EXSIST, error: 'User exist!'})//=>change state in store
                 }

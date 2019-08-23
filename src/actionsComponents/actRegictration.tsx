@@ -3,16 +3,6 @@ import { connect } from 'react-redux';
 import {RPr} from '../redux/regestration/actions';
 
 
-// export const goRegistration = (propsElement:{}):any => {
-//     if(propsElement){
-//         return 'Сервер не отвечает, поробуйте позже!'
-//     }
-// }
-// export const successRegistration = (propsElement:{}):any => {
-//     if(propsElement){
-//         return 'Сервер не отвечает, поробуйте позже!'
-//     }
-// }
 
 export const parseRequestServer = (data:any, regObj:any) =>{
     let status = false;
