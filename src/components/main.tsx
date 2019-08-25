@@ -1,14 +1,10 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 
 const Main: React.FC = () => {
     return(
         <div className="main">
-            This ig Main Page!
-            <div>
-                <Link to="./">На главную</Link>
-            </div>
-            
+           <h1>Welcom to here!</h1>
+           <h2>Please Login or Register!</h2>
         </div>
     )
 }

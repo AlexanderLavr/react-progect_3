@@ -5,18 +5,27 @@ import {LoginPros} from '../redux/login/actions';
 
 export const parseRequestServer = (data:any, loginObj:any) =>{
     let status = false;
+    let admin = false;
+  
     let {
         email: loginEmail,
-        password: loginPassword,
+        password: loginPassword
     } = loginObj.obj
     for(let i of data){
         if(loginEmail === i.email && 
-            loginPassword === i.password){
+            loginPassword === i.password &&
+            i.isAdmin === false){
                 status = true;
-                return status
-            }
+                return [status, admin]
+        }else if(loginEmail === i.email && 
+            loginPassword === i.password &&
+            i.isAdmin === true){
+                status = true;
+                admin = true;
+                return [status, admin]
+        }
     }
-    return status
+    return [status, admin]
 }
 
 export const validLogin = (obj:any) => {
@@ -43,25 +52,25 @@ export const validLogin = (obj:any) => {
 }
 
 
-
-
-
-
 const mapStateToProps = (state: any) => ({
     emailUser: state.regestration.email,
     passwordUser: state.regestration.password,
 
     logErrorEmail: state.login.logErrorEmail,
     logErrorPassword: state.login.logErrorPassword,
+    
+    loginEmail: state.login.loginEmail,
+    loginPassword: state.login.loginPassword,
+    loginSuccess: state.login.loginSuccess,
     loginError: state.login.loginError,
-    loginSuccess: state.login.loginSuccess
+    userIsAdmin: state.login.userIsAdmin
 });
 
 export default connect(
     mapStateToProps,
     dispatch=>({
-        doLogin: (currentObj:any)=>{
-            dispatch({type: LoginPros.DO_LOGIN, obj: currentObj})
+        doLogin: (currentObj:{}, history:{})=>{
+            dispatch({type: LoginPros.DO_LOGIN, obj: currentObj, history})
         }
     })
 )(Login);

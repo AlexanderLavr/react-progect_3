@@ -1,6 +1,4 @@
 import React from 'react';
-import {RegistrationState} from '../redux/regestration/types';
-import { Redirect } from 'react-router';
 
 
 export class RegistrationComponent extends React.Component<any>{
@@ -8,13 +6,15 @@ export class RegistrationComponent extends React.Component<any>{
         firstname: '',
         secondname: '',
         email: '',
-        password: ''
+        password: '',
+        isAdmin: false
     }
 
     
     submitRegistration = (e: any)=>{
         e.preventDefault();
-        this.props.doRegister(this.state)
+        let {history} = this.props;
+        this.props.doRegister(this.state, history)
     }
     
     handle = (event:any)=>{
@@ -22,11 +22,6 @@ export class RegistrationComponent extends React.Component<any>{
     }
 
     render(){
-        console.log(this.props.history)
-        if(this.props.successRegister){
-            // return <Redirect to='/login'/>
-            // this.props.history.push('/login');
-        }
         return(
             <div className="containerRegestration">
               <h2>Regestration</h2>

@@ -9,7 +9,8 @@ export const initialState: any = {
     errorSecondname: '',
     errorEmail: '',
     errorPassword: '',
-
+    
+    isAdmin: false,
     startRegister: false,
     userExist: false,
     successRegister: false,
@@ -17,6 +18,8 @@ export const initialState: any = {
 };
 
 export function regestrationReduser(state:any = initialState, action:any){
+
+  // debugger;
   switch (action.type){
      case 'DO_REGISTER':
         return {
@@ -31,6 +34,7 @@ export function regestrationReduser(state:any = initialState, action:any){
           secondname: obj.obj.secondname,
           email: obj.obj.email,
           password: obj.obj.password,
+          isAdmin: false,
 
           errorFirstname: '',
           errorSecondname: '',

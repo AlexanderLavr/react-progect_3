@@ -1,18 +1,10 @@
 import React from 'react';
-import { Redirect } from 'react-router';
-// import Error from './error';
-// import { Redirect } from 'react-router';
-// import {RPr} from '../redux/regestration/actions';
-// import {mapStateToProps} from '../actions/actRegictration'
-// import { doRegistration } from '../redux/regestration/sagasRegestration';
-// import Error from './error';
-// import { connect } from 'react-redux';
-      
+
 
 export class Login extends React.Component<any>{
     state:any = {
         email: this.props.emailUser,
-        password: this.props.passwordUser
+        password: this.props.passwordUser,
     }
     
     changeInp=(e:any)=>{
@@ -20,12 +12,10 @@ export class Login extends React.Component<any>{
     }
     eventLogin(e:any){
         e.preventDefault();
-        this.props.doLogin(this.state)
+        let {history} = this.props;
+        this.props.doLogin(this.state, history)
     }
     render(){
-        if(this.props.loginSuccess){
-            return <Redirect to='/'/>
-        }
         return(
             <div className="containerLogin">
                 <h2>LogIn</h2>
@@ -46,7 +36,7 @@ export class Login extends React.Component<any>{
                         </div>
                         <div className="error">{this.props.logErrorPassword}</div>
                         <div className="item-button">
-                            <button  id="submit-registr" onClick={(e)=>{this.eventLogin(e)}} >Registration</button>
+                            <button  id="submit-registr" onClick={(e)=>{this.eventLogin(e)}}>LogIn</button>
                         </div>
                     </form>
                     <div style={{color: 'red', height: '20px'}}>{this.props.loginError}</div>

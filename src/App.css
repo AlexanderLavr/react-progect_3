@@ -10,6 +10,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.active{
+  color: red;
+}
 .app-nav{
   display: flex;
   width: 500px;

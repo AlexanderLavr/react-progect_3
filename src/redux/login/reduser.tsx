@@ -1,11 +1,12 @@
 export const initialState: any = {
   doLogin: true,
-  email: '',
-  password: '',
+  loginEmail: '',
+  loginPassword: '',
   logErrorEmail: '',
   logErrorPassword: '',
   loginSuccess: false,
-  loginError: ''
+  loginError: '',
+  userIsAdmin: false
 };
 
 export function loginReduser(state:any = initialState, action:any){
@@ -23,10 +24,22 @@ export function loginReduser(state:any = initialState, action:any){
           logErrorEmail: obj.logErrorEmail,
           logErrorPassword: obj.logErrorPassword
         }
-      case 'LOGIN_SUCCESS':
+      case 'LOGIN_SUCCESS_USER':
+        let objSuccUser = action.obj;
         return {
           ...state, 
           loginSuccess: true,
+          loginEmail: objSuccUser.obj.email,
+          loginPassword: objSuccUser.obj.password
+        }
+      case 'LOGIN_SUCCESS_ADMIN':
+        let objSuccAdmin = action.obj;
+        return {
+          ...state, 
+          loginSuccess: true,
+          loginEmail: objSuccAdmin.obj.email,
+          loginPassword: objSuccAdmin.obj.password,
+          userIsAdmin: true
         }
       case 'LOGIN_ERROR':
           return {

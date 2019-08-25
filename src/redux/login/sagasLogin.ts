@@ -13,21 +13,28 @@ export function* doLogin(): IterableIterator<any>{
                 errorObj
             } = validLogin(obj)//валид обьект login
 
-            yield put({type:'LoginPros.', obj, error: 'Success registration!'})
-
             if(stateValid===2){//Если все поля login заполнены и валидация true
                 const data = yield call(() => {//=> query to J-serv
                     return fetch('http://localhost:3000/users')
                             .then(res => res.json())
                     }
                 );
-                if(!parseRequestServer(data, obj)){
+                let parseRequest = parseRequestServer(data, obj)
+                let[
+                    status,
+                    admin
+                ] = parseRequest;
+                console.log(status, admin)
+                if(status === false && admin === false){
                     yield put({type:LoginPros.LOGIN_ERROR, error:'Не существует такой учетной записи!'})
-                }else{
-                    yield put({type:LoginPros.LOGIN_SUCCESS})//=>change state in store
+                }else if(status === true && admin === false){
+                    yield put({type:LoginPros.LOGIN_SUCCESS_USER, obj})//=>change state in store
+                    arguments[0].history.push('./userHome');
+                }else if(status && admin){
+                    yield put({type:LoginPros.LOGIN_SUCCESS_ADMIN, obj})//=>change state in store
+                    arguments[0].history.push('./adminHome');
                 }
                
-                
             }else{
                 yield put({type: LoginPros.ERROR_VALIDE, errorObj})
             }
@@ -36,12 +43,3 @@ export function* doLogin(): IterableIterator<any>{
         };
     })
 }
- // case 'ERROR_VALIDE':
-      //       let obj = action.errorObj
-      //       newState.errorFirstname = obj.errorFirstname;
-      //       newState.errorSecondname = obj.errorSecondname;
-      //       newState.errorEmail = obj.errorEmail;
-      //       newState.errorPassword = obj.errorPassword;
-      //   return {
-      //     newState
-      //   }

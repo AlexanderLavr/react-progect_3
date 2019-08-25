@@ -77,8 +77,8 @@ export const mapStateToProps = (state: any) => ({
 export default connect(
     mapStateToProps,
     dispatch=>({
-        doRegister: (currentObj:any)=>{
-            dispatch({type: RPr.DO_REGISTER, obj: currentObj})
+        doRegister: (currentObj:{}, history:{})=>{
+            dispatch({type: RPr.DO_REGISTER, obj: currentObj, history})
         }
     })
 )(RegistrationComponent);
