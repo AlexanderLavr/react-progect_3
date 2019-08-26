@@ -5,6 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { all } from "redux-saga/effects";
 import { doRegistration } from "./regestration/sagasRegestration";
 import { doLogin } from "./login/sagasLogin";
+import { doHeader } from "./header/sagasHeader";
 
 
 
@@ -29,7 +30,7 @@ export default function configStore(initialState?:any):any{
 
 
     sagaMiddleware.run(function*() {
-        yield all([doRegistration(), doLogin()]);
+        yield all([doRegistration(), doLogin(), doHeader()]);
     });
     return store
 }

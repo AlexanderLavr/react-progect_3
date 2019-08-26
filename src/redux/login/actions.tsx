@@ -1,4 +1,4 @@
-export enum LoginPros{
+export enum LoginProc{
     DO_LOGIN = 'DO_LOGIN',
     ERROR_VALIDE = 'ERROR_VALIDE',
     LOGIN_SUCCESS_USER = 'LOGIN_SUCCESS_USER',

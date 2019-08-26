@@ -1,13 +1,15 @@
 import React from 'react';
 
-
+const defaultImageProfile:string = 'images/users.svg';
 export class RegistrationComponent extends React.Component<any>{
+
     state:any = {
         firstname: '',
         secondname: '',
         email: '',
         password: '',
-        isAdmin: false
+        isAdmin: false,
+        imageProfile: defaultImageProfile
     }
 
     

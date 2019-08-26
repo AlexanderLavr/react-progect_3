@@ -1,5 +1,9 @@
+import {LoginProc} from '../../redux//login/actions';
+import {HeaderProc} from '../../redux/header/actions';
+
+
 export const initialState: any = {
-  doLogin: true,
+  doLogin: false,
   loginEmail: '',
   loginPassword: '',
   logErrorEmail: '',
@@ -48,6 +52,18 @@ export function loginReduser(state:any = initialState, action:any){
             logErrorEmail: '',
             logErrorPassword: ''
           }
+        case HeaderProc.LOG_OUT:
+            return {
+              ...state, 
+              doLogin: false,
+              loginEmail: '',
+              loginPassword: '',
+              logErrorEmail: '',
+              logErrorPassword: '',
+              loginSuccess: false,
+              loginError: '',
+              userIsAdmin: false
+            }
         default:
           return{...state}
     }

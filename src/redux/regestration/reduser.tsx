@@ -14,7 +14,7 @@ export const initialState: any = {
     startRegister: false,
     userExist: false,
     successRegister: false,
-    error: '',
+    error: ''
 };
 
 export function regestrationReduser(state:any = initialState, action:any){
@@ -40,7 +40,7 @@ export function regestrationReduser(state:any = initialState, action:any){
           errorSecondname: '',
           errorEmail: '',
           errorPassword: '',
-          error: action.error,
+          error: action.error
         }
       }
       case 'USER_EXSIST':

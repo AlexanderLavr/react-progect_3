@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {Login} from '../components/login';
-import {LoginPros} from '../redux/login/actions';
+import {LoginProc} from '../redux/login/actions';
 
 
 export const parseRequestServer = (data:any, loginObj:any) =>{
@@ -70,7 +70,7 @@ export default connect(
     mapStateToProps,
     dispatch=>({
         doLogin: (currentObj:{}, history:{})=>{
-            dispatch({type: LoginPros.DO_LOGIN, obj: currentObj, history})
+            dispatch({type: LoginProc.DO_LOGIN, obj: currentObj, history})
         }
     })
 )(Login);

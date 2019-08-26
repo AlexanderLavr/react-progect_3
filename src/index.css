@@ -1,6 +1,6 @@
 *{
   box-sizing: border-box;
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
 body {
   margin: 0;
@@ -76,57 +76,32 @@ ul{
 
 /* //--------------------------header Admin */
 
-.defaulProfile{
+.headerIcon{
   width: 30px;
   height: 30px;
   margin-left: 20px;
   cursor: pointer;
 }
 
-
-
-.header-admin{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0;
-  height: 40px;
-}
-.header-admin>div{
-  display: flex;
-  height: 100%;
-}
-.adminHome{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.admin-satus{
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.admin-satus-active{
-  
-}
-.dropdown-list-admin{
+.dropdown-list{
+  display: none;
   position: absolute;
+  background: #fff;
   width: 100%;
   top: 100%;
   right: 0;
   margin: 0;
+  z-index: 10;
 }
-.dropdown-list-admin>li{
+.dropdown-list>li{
   border: 1px solid gray;
-  width: 100%;
 }
-.dropdown-list-admin>li>a{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+.dropdown-list>li>a{
   padding: 5px;
+  width: 100%;
 }
+.dropdown-list-active{
+  display: block;
+}
+
 /* //--------------------------header Admin */

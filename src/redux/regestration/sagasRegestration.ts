@@ -2,6 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import {RPr, valReg} from '../../redux/regestration/actions';
 import {parseRequestServer, validRegistration} from '../../actionsComponents/actRegictration';
 import { any } from 'prop-types';
+import  defaulProfile  from '../images/users.svg';
 
 
 export function* doRegistration(): IterableIterator<any>{
