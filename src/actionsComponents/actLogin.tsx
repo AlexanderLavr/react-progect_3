@@ -4,9 +4,10 @@ import {LoginProc} from '../redux/login/actions';
 
 
 export const parseRequestServer = (data:any, loginObj:any) =>{
-    let status = false;
-    let admin = false;
-  
+    let status:boolean = false;
+    let admin:boolean = false;
+    let imageProfile:string = '';
+    let idUser:number = 0;
     let {
         email: loginEmail,
         password: loginPassword
@@ -15,17 +16,21 @@ export const parseRequestServer = (data:any, loginObj:any) =>{
         if(loginEmail === i.email && 
             loginPassword === i.password &&
             i.isAdmin === false){
+                idUser = i.id;
+                imageProfile = i.imageProfile;
                 status = true;
-                return [status, admin]
+                return [status, admin, imageProfile, idUser]
         }else if(loginEmail === i.email && 
             loginPassword === i.password &&
             i.isAdmin === true){
+                idUser = i.id;
+                imageProfile = i.imageProfile;
                 status = true;
                 admin = true;
-                return [status, admin]
+                return [status, admin, imageProfile, idUser]
         }
     }
-    return [status, admin]
+    return [status, admin, imageProfile, idUser]
 }
 
 export const validLogin = (obj:any) => {
@@ -55,6 +60,9 @@ export const validLogin = (obj:any) => {
 const mapStateToProps = (state: any) => ({
     emailUser: state.regestration.email,
     passwordUser: state.regestration.password,
+
+
+    imageProfile: state.regestration.imageProfile,
 
     logErrorEmail: state.login.logErrorEmail,
     logErrorPassword: state.login.logErrorPassword,

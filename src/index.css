@@ -105,3 +105,25 @@ ul{
 }
 
 /* //--------------------------header Admin */
+
+
+
+
+/* //--------------------------profile */
+.item{
+  margin: 20px auto 0;
+  width: fit-content;
+}
+.container-Photo{
+  width: 500px;
+  height: auto;
+}
+.container-button{
+  margin-top: 20px;
+}
+.container-button button{
+  display: flex;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+/* //--------------------------profile */

@@ -8,7 +8,9 @@ const mapStateToProps = (state: any) => ({
     loginSuc: state.login.loginSuccess,
     loginEmail: state.login.loginEmail,
     loginPassword: state.login.loginPassword,
-    userIsAdmin: state.login.userIsAdmin
+    userIsAdmin: state.login.userIsAdmin,
+
+    imageProfile: state.login.imageProfile
 });
 
 

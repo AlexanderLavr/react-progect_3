@@ -14,7 +14,8 @@ export const initialState: any = {
     startRegister: false,
     userExist: false,
     successRegister: false,
-    error: ''
+    error: '',
+    imageProfile: ''
 };
 
 export function regestrationReduser(state:any = initialState, action:any){
@@ -34,6 +35,7 @@ export function regestrationReduser(state:any = initialState, action:any){
           secondname: obj.obj.secondname,
           email: obj.obj.email,
           password: obj.obj.password,
+          imageProfile: obj.obj.imageProfile,
           isAdmin: false,
 
           errorFirstname: '',

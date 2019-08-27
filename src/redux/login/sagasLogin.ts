@@ -22,16 +22,17 @@ export function* doLogin(): IterableIterator<any>{
                 let parseRequest = parseRequestServer(data, obj)
                 let[
                     status,
-                    admin
+                    admin, 
+                    imageProfile,
+                    idUser
                 ] = parseRequest;
-                console.log(status, admin)
                 if(status === false && admin === false){
                     yield put({type:LoginProc.LOGIN_ERROR, error:'Не существует такой учетной записи!'})
                 }else if(status === true && admin === false){
-                    yield put({type:LoginProc.LOGIN_SUCCESS_USER, obj})//=>change state in store
+                    yield put({type:LoginProc.LOGIN_SUCCESS_USER, obj, imageProfile, idUser})//=>change state in store
                     arguments[0].history.push('./userHome');
                 }else if(status && admin){
-                    yield put({type:LoginProc.LOGIN_SUCCESS_ADMIN, obj})//=>change state in store
+                    yield put({type:LoginProc.LOGIN_SUCCESS_ADMIN, obj, imageProfile, idUser})//=>change state in store
                     arguments[0].history.push('./adminHome');
                 }
                

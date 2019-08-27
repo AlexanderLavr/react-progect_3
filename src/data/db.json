@@ -6,6 +6,7 @@
       "email": "alex@gmail.com",
       "password": "111111",
       "isAdmin": true,
+      "imageProfile": "images/users.svg",
       "id": 1
     },
     {
@@ -14,41 +15,17 @@
       "email": "dfvsd@fsgf.com",
       "password": "fgbcv",
       "isAdmin": false,
+      "imageProfile": "images/users.svg",
       "id": 2
     },
     {
-      "firstname": "erereregertger",
-      "secondname": "rsdgfresgf",
-      "email": "dfvsd@fsgf.com",
-      "password": ";'ikpoj",
-      "isAdmin": false,
-      "id": 3
-    },
-    {
-      "firstname": "erereregertger",
-      "secondname": "rsdgfresgf",
-      "email": "dfvsd@fsgf.com",
-      "password": "hdgfg",
-      "isAdmin": false,
-      "id": 4
-    },
-    {
       "firstname": "qwe",
-      "secondname": "rsdgfresgf",
-      "email": "dfg@sda.da",
-      "password": "444",
-      "imageProfile": "",
-      "isAdmin": false,
-      "id": 5
-    },
-    {
-      "firstname": "erereregertger",
-      "secondname": "rsdgfresgf",
-      "email": "dfvsd@fsgf.com",
-      "password": "11144854",
+      "secondname": "qwe",
+      "email": "qwe@qwe.qwe",
+      "password": "qwe",
       "isAdmin": false,
       "imageProfile": "images/users.svg",
-      "id": 6
+      "id": 3
     }
   ]
 }

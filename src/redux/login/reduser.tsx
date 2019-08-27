@@ -10,6 +10,8 @@ export const initialState: any = {
   logErrorPassword: '',
   loginSuccess: false,
   loginError: '',
+  imageProfile: '',
+  idUser: 0,
   userIsAdmin: false
 };
 
@@ -34,7 +36,9 @@ export function loginReduser(state:any = initialState, action:any){
           ...state, 
           loginSuccess: true,
           loginEmail: objSuccUser.obj.email,
-          loginPassword: objSuccUser.obj.password
+          loginPassword: objSuccUser.obj.password,
+          imageProfile: action.imageProfile,//take this with json-server
+          idUser: action.idUser//take this with json-server
         }
       case 'LOGIN_SUCCESS_ADMIN':
         let objSuccAdmin = action.obj;
@@ -43,7 +47,9 @@ export function loginReduser(state:any = initialState, action:any){
           loginSuccess: true,
           loginEmail: objSuccAdmin.obj.email,
           loginPassword: objSuccAdmin.obj.password,
-          userIsAdmin: true
+          userIsAdmin: true,
+          imageProfile: action.imageProfile,//take this with json-server
+          idUser: action.idUser//take this with json-server
         }
       case 'LOGIN_ERROR':
           return {
