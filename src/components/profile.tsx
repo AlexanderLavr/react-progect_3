@@ -2,22 +2,39 @@ import React from 'react';
 
 export class Profile extends React.Component<any>{
     state:any={
-        valueChangePhoto: "",
+        changePhoto: '',
     }
     valueChangePhoto(e:any){
-        this.setState({valueChangePhoto: e.target.value})
+        let defaultPhoto = this.props.imageProfile
+        let img:any = document.querySelector('#photo');
+        const toBase64 = (file:any) => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+        async function Main(){
+            const file:any = e.target.files[0];
+            if(!file){
+                return defaultPhoto
+            }
+            return await toBase64(file)
+        }
+        Main().then(res =>{
+            this.setState({changePhoto: res})
+            img.src = res;
+        })
+            
     }
     savePhotoProfile(){
-        let qwe = document.getElementById('choosePhoto')
-        console.log(qwe)
+       this.props.saveImgProfile({img:this.state.changePhoto, id:this.props.idUser})
     }
      render(){
-        console.log(this.state)
         return(
             <div>
                 <div className="item">
                     <div className="container-Photo">
-                        <img src={this.props.imageProfile} alt="photo-profile"/>
+                        <img id="photo" src={this.props.imageProfile} alt="photo-profile"/>
                     </div>
                     <div className="container-button">
                         <label htmlFor="choosePhoto"><input  onChange={(e)=>{this.valueChangePhoto(e)}}id="choosePhoto" type="file"/></label>

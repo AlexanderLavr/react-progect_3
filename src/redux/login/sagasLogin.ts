@@ -7,9 +7,8 @@ export function* doLogin(): IterableIterator<any>{
     yield takeEvery('DO_LOGIN', function*(obj:any){
 
         try {
-            let stateValid, errorObj
-            let resultValid = {
-                stateValid,
+            let {
+                stateValid, 
                 errorObj
             } = validLogin(obj)//валид обьект login
 

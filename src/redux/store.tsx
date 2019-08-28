@@ -6,7 +6,8 @@ import { all } from "redux-saga/effects";
 import { doRegistration } from "./regestration/sagasRegestration";
 import { doLogin } from "./login/sagasLogin";
 import { doHeader } from "./header/sagasHeader";
-
+import {saveImage} from "./profile/sagasProfile";
+import {doAdmin} from "./admin/sagas";
 
 
 export default function configStore(initialState?:any):any{
@@ -30,7 +31,7 @@ export default function configStore(initialState?:any):any{
 
 
     sagaMiddleware.run(function*() {
-        yield all([doRegistration(), doLogin(), doHeader()]);
+        yield all([doRegistration(), doLogin(), doHeader(), saveImage(), doAdmin()]);
     });
     return store
 }

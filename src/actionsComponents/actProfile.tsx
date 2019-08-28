@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import {Profile} from '../components/profile';
 
 
+export const parceJsonFile = (data:any, img:string) =>{
+    data.imageProfile = img
+    return data
+    
+}
+
 export const mapStateToProps = (state: any) => ({
     email: state.login.email,
     password: state.password,
@@ -14,8 +20,8 @@ export const mapStateToProps = (state: any) => ({
 export default connect(
     mapStateToProps,
     dispatch=>({
-        // doRegister: (currentObj:{}, history:{})=>{
-        //     dispatch({type: RPr.DO_REGISTER, obj: currentObj, history})
-        // }
+        saveImgProfile: (saveImg:{})=>{
+            dispatch({type: 'DO_SAVE_PHOTO', saveImg})
+        }
     })
 )(Profile);

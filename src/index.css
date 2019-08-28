@@ -80,7 +80,6 @@ ul{
   width: 30px;
   height: 30px;
   margin-left: 20px;
-  cursor: pointer;
 }
 
 .dropdown-list{
@@ -117,6 +116,9 @@ ul{
 .container-Photo{
   width: 500px;
   height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .container-button{
   margin-top: 20px;

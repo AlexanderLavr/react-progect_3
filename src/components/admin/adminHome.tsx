@@ -1,12 +1,27 @@
 import React from 'react';
+import SimpleTabs from './tabsAdminHome';
 
-export default class AdminHome extends React.Component<any>{
-    render(){
-        return(
-            <div style={{
-                background: 'green',
-                minHeight: '100vh'
-            }}>This is Admin Home</div>
-        )
+
+export class AdminHome extends React.Component<any>{
+  state:any = {
+    userIsAdmin: true
+  }
+  qwe(){
+    if(this.state.userIsAdmin){
+      this.setState({userIsAdmin: false})
+      this.props.queryServer()
     }
+    
+  }
+    
+  
+  render(){
+   {this.qwe()}
+    return(
+      <SimpleTabs></SimpleTabs>
+    )
+  }
 }
+
+
+

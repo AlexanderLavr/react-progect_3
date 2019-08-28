@@ -58,6 +58,15 @@ export function loginReduser(state:any = initialState, action:any){
             logErrorEmail: '',
             logErrorPassword: ''
           }
+      case 'DO_SAVE_PHOTO':
+        return {
+          ...state
+        }
+      case 'SAVE_PHOTO':
+        return {
+          ...state, 
+          imageProfile: action.saveImg.saveImg.img
+        }
         case HeaderProc.LOG_OUT:
             return {
               ...state, 

@@ -9,7 +9,7 @@ import Login from './actionsComponents/actLogin';
 import Main from './components/main';
 import Regestration from './actionsComponents/actRegictration';
 import UserHome from './components/user/userHome';//
-import AdminHome from './components/admin/adminHome';//
+import AdminHome from './actionsComponents/actAdminHome';//
 import Profile from './actionsComponents/actProfile';
 
 
