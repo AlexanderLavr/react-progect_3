@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+// import React from 'react';
+// import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import {HeaderNav} from '../components/header';
 import {HeaderProc} from '../redux/header/actions';
@@ -20,6 +20,9 @@ export default connect(
     dispatch=>({
         logOut: ()=>{
             dispatch({type: HeaderProc.LOG_OUT})
+        },
+        localStoreUser: (obj:any)=>{
+            dispatch({type: 'DO_HEADER', obj})
         }
     })
 )(HeaderNav);

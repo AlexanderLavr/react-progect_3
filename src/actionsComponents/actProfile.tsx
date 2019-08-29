@@ -6,7 +6,6 @@ import {Profile} from '../components/profile';
 export const parceJsonFile = (data:any, img:string) =>{
     data.imageProfile = img
     return data
-    
 }
 
 export const mapStateToProps = (state: any) => ({

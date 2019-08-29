@@ -67,6 +67,33 @@ export function loginReduser(state:any = initialState, action:any){
           ...state, 
           imageProfile: action.saveImg.saveImg.img
         }
+
+        case 'DO_HEADER':
+        return {
+          ...state
+        }
+        case 'HEADER_ADMIN'://from Local STORE
+        return {
+          ...state, 
+          loginSuccess: action.obj.obj.loginSuccess,
+          loginEmail: action.obj.obj.email,
+          loginPassword: action.obj.obj.password,
+          userIsAdmin: action.obj.obj.admin,
+          imageProfile: action.obj.obj.imageProfile,
+          idUser: action.obj.obj.idUser
+        }
+        // case 'SAVE_PHOTO_LOCAL'://from Local STORE
+        // return {
+        //   ...state, 
+        //   loginSuccess: action.obj.obj.loginSuccess,
+        //   loginEmail: action.obj.obj.email,
+        //   loginPassword: action.obj.obj.password,
+        //   userIsAdmin: action.obj.obj.admin,
+        //   imageProfile: action.obj.obj.imageProfile,
+        //   idUser: action.obj.obj.idUser
+        // }
+
+
         case HeaderProc.LOG_OUT:
             return {
               ...state, 

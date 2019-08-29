@@ -2,7 +2,7 @@
 
 
 export const initialState: any = {
-  serverArray: undefined
+  serverArray: []
 };
 
 export function adminReduser(state:any = initialState, action:any){
@@ -17,6 +17,8 @@ export function adminReduser(state:any = initialState, action:any){
         serverArray: action.data
         }
         default:
-          return{...state}
+          return{
+            ...state
+        }
     }
 }

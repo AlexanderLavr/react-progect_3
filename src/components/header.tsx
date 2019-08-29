@@ -13,10 +13,12 @@ export class HeaderNav extends React.Component<any>{
         this.setState({ active: !currentState });
     };
     logOut(){
+        localStorage.removeItem('user')
         this.props.logOut()
     }
      render(){
         if(this.props.loginSuc && this.props.userIsAdmin===false){//!Admin
+
             return(
                 <ul className="app-nav">
                 <li><Link to="/userHome">User Home</Link></li>
@@ -37,6 +39,7 @@ export class HeaderNav extends React.Component<any>{
             </ul>
             )
         }else if(this.props.loginSuc && this.props.userIsAdmin===true){//Admin
+        
             return(
                 <ul className="app-nav">
                 <li><Link to="/adminHome">Admin Home</Link></li>
@@ -62,6 +65,13 @@ export class HeaderNav extends React.Component<any>{
                 <li><Link to="/regestration">Regestration</Link></li>
             </ul>
         )
+        
+    }
+    componentDidMount(){
+        let localStorUser:any = localStorage.getItem('user');
+        if(localStorUser){
+            this.props.localStoreUser(JSON.parse(localStorUser))
+        }
     }
 }
 

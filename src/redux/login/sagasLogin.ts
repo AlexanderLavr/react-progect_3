@@ -5,7 +5,6 @@ import {LoginProc} from '../../redux/login/actions';
 
 export function* doLogin(): IterableIterator<any>{
     yield takeEvery('DO_LOGIN', function*(obj:any){
-
         try {
             let {
                 stateValid, 
@@ -19,19 +18,44 @@ export function* doLogin(): IterableIterator<any>{
                     }
                 );
                 let parseRequest = parseRequestServer(data, obj)
+                
                 let[
                     status,
                     admin, 
                     imageProfile,
                     idUser
                 ] = parseRequest;
+
+                let{
+                    email,
+                    password
+                }=obj.obj;//obj register
+        
                 if(status === false && admin === false){
                     yield put({type:LoginProc.LOGIN_ERROR, error:'Не существует такой учетной записи!'})
                 }else if(status === true && admin === false){
+                    localStorage.setItem('user', JSON.stringify({
+                        doLogin: true,
+                        loginSuccess: true,
+                        email: email,
+                        password: password,
+                        idUser: idUser,
+                        admin: admin,
+                        imageProfile: imageProfile
+                    }))
                     yield put({type:LoginProc.LOGIN_SUCCESS_USER, obj, imageProfile, idUser})//=>change state in store
                     arguments[0].history.push('./userHome');
                 }else if(status && admin){
-                    yield put({type:LoginProc.LOGIN_SUCCESS_ADMIN, obj, imageProfile, idUser})//=>change state in store
+                    localStorage.setItem('user', JSON.stringify({
+                        doLogin: true,
+                        loginSuccess: true,
+                        email: email,
+                        password: password,
+                        idUser: idUser,
+                        admin: admin,
+                        imageProfile: imageProfile
+                    }))
+                    yield put({type:LoginProc.LOGIN_SUCCESS_ADMIN, obj, imageProfile, idUser});//=>change state in store
                     arguments[0].history.push('./adminHome');
                 }
                
