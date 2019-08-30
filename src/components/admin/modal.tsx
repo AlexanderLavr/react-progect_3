@@ -1,72 +1,46 @@
 import React from 'react';
+import '../../style/modalAdmin.css'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import { connect } from 'react-redux';
+import image from '../../images/delete.svg'
 
-import buttonEdit from "./tableUsers"
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
 
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+export class AdminModal extends React.Component<any,any>{
 
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
-const useStyles = makeStyles((theme: any) =>
-  createStyles({
-    paper: {
-      position: 'absolute',
-      width: 400,
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-  }),
-);
-
-export default function SimpleModal() {
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = (e:any) => {
-      console.log(e.currentTarget)
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      {/* <p>Click to get the full Modal experience!</p> */}
-      <button type="button" style={{width: '100%', height: '100%'}} onClick={handleOpen}>
-        Edit
-      </button>
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={open}
-        onClose={handleClose}
-      >
-        <div style={modalStyle} className={classes.paper}>
-          <h2 id="simple-modal-title">Text in a modal</h2>
-          <p id="simple-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
-          {/* <SimpleModal /> */}
+  state:any = {
+    firstname: this.props.editUserServer.firstname,
+    secondname: this.props.editUserServer.secondname,
+    email: this.props.editUserServer.email,
+    password: this.props.editUserServer.password,
+    isAdmin: this.props.editUserServer.isAdmin
+}   
+  
+  
+ 
+  changeInp=(e:any)=>{
+    this.setState({[e.target.placeholder]:e.target.value})
+  }
+  render(){ 
+    
+    // console.log(this.props.editUserServer)
+    return(
+      <Modal open={this.props.openAdminModal} className="modal-admin">
+        <div  className="modal-container">
+          <h2 id="simple-modal-title">Edit User</h2>
+          <div>
+            <input placeholder="firstname" onChange={(e)=>{this.changeInp(e)}} value={this.state.firstname} /> 
+            <input placeholder="secondname" onChange={(e)=>{this.changeInp(e)}}  value={this.state.secondname}/>
+            <input placeholder="email" onChange={(e)=>{this.changeInp(e)}}  value={this.state.email}/>
+            <input placeholder="password" onChange={(e)=>{this.changeInp(e)}} value={this.state.password}/>
+            <input placeholder="isAdmin" onChange={(e)=>{this.changeInp(e)}} value={this.state.isAdmin}/>
+          </div>
+          <button className="save-edit" onClick={()=>{this.props.saveEditUser(this.state)}}>save</button>
+          <button className="close-modal" onClick={()=>{this.props.closeModal()}} >close</button>
         </div>
       </Modal>
-    </div>
-  );
+    )
+  } 
 }
+
