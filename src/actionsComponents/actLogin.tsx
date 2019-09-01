@@ -39,8 +39,8 @@ export const validLogin = (obj:any) => {
         logErrorPassword: ''
     }
     let stateValid = 0;
-
-    const passWordExpr = new RegExp(/[a-zA-Z0-9]{3,}/);
+    
+    const passWordExpr = new RegExp(/^[0-9]{3,}$/);
     const emailRegExpr = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
 
     if(!emailRegExpr.test(obj.obj.email)){

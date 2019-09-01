@@ -15,25 +15,49 @@ export function adminReduser(state:any = initialState, action:any){
           ...state, 
         serverArray: action.data
         }
+
+      case 'DO_DELETE_USER':
+        return {
+          ...state
+        }
+      case 'NEW_ADMIN_ARRAY':
+        return {
+          ...state, 
+        serverArray: action.data
+        }
+
+      case 'DO_EDIT_USER':
+        return {
+          ...state
+        }
       case 'EDIT_USER_SERVER':
         return {
           ...state, 
           editUserServer: action.data
         }
+
+
       case 'OPEN_MODAL':
         return {
           ...state, 
           openAdminModal: true
-        }
-      case 'DO_DELETE_USER':
-        return {
-          ...state
         }
       case 'CLOSE_MODAL':
         return {
           ...state, 
           openAdminModal: false,
           editUserServer: {}
+        }
+
+
+
+      case 'UPDATE_USER':
+        // console.log(action.updateUserArray)
+        // debugger;
+        return {
+          ...state, 
+          serverArray: action.updateUserArray,
+          editUserServer: action.newEditUser
         }
         default:
           return{

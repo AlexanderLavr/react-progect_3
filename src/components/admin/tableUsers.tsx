@@ -35,7 +35,6 @@ let parceId = (id:any)=>{
 
 
 let buttonEdit = (e:any, props:any) =>{
-  e.preventDefault();
   let elem:any = e.currentTarget
   let id:number = parceId(elem.id)
   props.editUser(id)

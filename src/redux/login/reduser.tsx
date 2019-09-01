@@ -82,18 +82,11 @@ export function loginReduser(state:any = initialState, action:any){
           imageProfile: action.obj.obj.imageProfile,
           idUser: action.obj.obj.idUser
         }
-        // case 'SAVE_PHOTO_LOCAL'://from Local STORE
-        // return {
-        //   ...state, 
-        //   loginSuccess: action.obj.obj.loginSuccess,
-        //   loginEmail: action.obj.obj.email,
-        //   loginPassword: action.obj.obj.password,
-        //   userIsAdmin: action.obj.obj.admin,
-        //   imageProfile: action.obj.obj.imageProfile,
-        //   idUser: action.obj.obj.idUser
-        // }
-
-
+        case 'SUCCESS_REGISTRATION':
+          return {
+            ...state,
+            loginError: action.error
+          }
         case HeaderProc.LOG_OUT:
             return {
               ...state, 

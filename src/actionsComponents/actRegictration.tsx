@@ -33,21 +33,21 @@ export const validRegistration = (obj:any) => {
     }
     let stateValid = 0;
 
-    const inpRegExpr = new RegExp(/[a-zA-Z]{3,}/);
-    const passWordExpr = new RegExp(/[a-zA-Z0-9]{3,}/);
+    const inpRegExpr = new RegExp(/^[a-zA-Z]{3,}$/);
+    const passWordExpr = new RegExp(/^[0-9]{3,}$/);
     const emailRegExpr = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/);
 
     if(!inpRegExpr.test(obj.obj.firstname)){
-        errorObj.errorFirstname = 'Error: допустимы буквы латинского алфавита и цифры не менее 3-х';
+        errorObj.errorFirstname = 'Error: допустимы буквы латинского алфавита менее 3-х';
     }else{++stateValid}
     if(!inpRegExpr.test(obj.obj.secondname)){
-        errorObj.errorSecondname = 'Error: допустимы буквы латинского алфавита и цифры не менее 3-х';
+        errorObj.errorSecondname = 'Error: допустимы буквы латинского алфавита менее 3-х';
     }else{++stateValid}
     if(!emailRegExpr.test(obj.obj.email)){
         errorObj.errorEmail = 'Error: uncorrectEmail value!';
     }else{++stateValid}
     if(!passWordExpr.test(obj.obj.password)){
-        errorObj.errorPassword = 'Error: допустимы буквы латинского алфавита и цифры не менее 3-х';
+        errorObj.errorPassword = 'Error: допустимы цифры не менее 3-х';
     }else{++stateValid}
 
     return {

@@ -31,9 +31,10 @@ export function* doRegistration(): IterableIterator<any>{
                             body: JSON.stringify(obj.obj)
                         })
                     })
-                    yield put({type:RPr.ADD_USER, obj, error: 'Success registration!'}) //=> add User
+                    yield put({type:RPr.ADD_USER, obj, error: 'Success registration!'}) //=> LOGIN REDUSER
                     yield put({type:RPr.SUCCESS_REGISTRATION})//=>change state in store
                     arguments[0].history.push('./login')//Redirect после успешного добавления
+                    yield put({type: 'SUCCESS_REGISTRATION', error: 'Success registration!'}) 
                    
                 }else{
                     yield put({type:RPr.USER_EXSIST, error: 'User exist!'})//=>change state in store

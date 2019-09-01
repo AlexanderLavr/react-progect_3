@@ -41,8 +41,8 @@ export function regestrationReduser(state:any = initialState, action:any){
           errorFirstname: '',
           errorSecondname: '',
           errorEmail: '',
-          errorPassword: '',
-          error: action.error
+          errorPassword: ''
+          // error: action.error
         }
       }
       case 'USER_EXSIST':
