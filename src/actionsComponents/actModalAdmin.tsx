@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {AdminModal} from '../components/admin/modal';
+import {AdminModal} from '../components/admin/adminUsers/modal';
 
 
 export const validSaveAdmin = (obj:any) => {
@@ -35,12 +35,6 @@ export const parseEditUser = (serverData:{}, data:any)=>{
     newServerData.isAdmin = data.data.isAdmin;
     return newServerData
 }
-
-
-
-
-
-
 
 const mapStateToProps = (state: any) => ({
     serverArray: state.admin.serverArray,

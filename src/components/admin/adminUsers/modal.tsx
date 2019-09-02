@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../style/modalAdmin.css'
+import '../../../style/modalAdmin.css'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
@@ -48,8 +48,11 @@ export class AdminModal extends React.Component<any,any>{
               <option value="false">False</option>
             </select>
           </div>
-          <button className="save-edit" onClick={()=>{this.props.saveEditUser(this.state)}}>save</button>
-          <button className="close-modal" onClick={()=>{this.props.closeModal()}} >close</button>
+          <button className="save-edit" onClick={()=>{
+            this.props.saveEditUser(this.state)
+            setTimeout(()=>{this.props.closeModal()}, 1000)
+            }}>save</button>
+          {/* <button className="close-modal" onClick={()=>{this.props.closeModal()}} >close</button> */}
         </div>
       </Modal>
     )

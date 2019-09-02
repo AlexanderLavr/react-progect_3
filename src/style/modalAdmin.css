@@ -4,18 +4,18 @@
     justify-content: center;
 }
 
-.modal-container{
+.modal-admin .modal-container{
     width: fit-content;
     position: relative;
     background: #fff;
     border: 2px solid gray;
     padding: 10px;
 }
-.modal-container h2{
+.modal-admin .modal-container h2{
     margin: 0 5px 20px 0;
     text-align: center;
 }
-.close-modal{
+.modal-admin .close-modal{
     position: absolute;
     border: 1px solid gray;
     width: 50px;
@@ -23,14 +23,14 @@
     top: -30px;
     right: 0px;
 }
-.modal-container input{
+.modal-admin .modal-container input{
     outline: none;
     border: 0;
     border-bottom: 1px solid gray;
     padding-left: 5px;
     margin: 5px 15px;
 }
-.save-edit{
+.modal-admin .save-edit{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,4 +40,18 @@
     margin-right: 15px;
     width: 100px;
     height:  30px;
+}
+#del1{
+    display: none;
+}
+.tableUsers-delete,
+.tableUsers-edit{
+    border: 0;
+    background: #fff;
+    outline: 0;
+}
+.tableUsers-delete img,
+.tableUsers-edit img{
+    width: 25px;
+    cursor: pointer;
 }

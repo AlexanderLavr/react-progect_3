@@ -17,7 +17,11 @@ const mapStateToProps = (state: any) => ({
     userIsAdmin: state.login.userIsAdmin,
 
     imageProfile: state.login.imageProfile,
-    serverArray: state.admin.serverArray
+    serverArray: state.admin.serverArray,
+
+
+    openAdminModal: state.admin.openAdminModal,
+    editUserServer: state.admin.editUserServer
 });
 
 

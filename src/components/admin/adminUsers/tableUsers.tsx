@@ -9,11 +9,12 @@ import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 
 
-import AdminModal from "../../actionsComponents/actModalAdmin";
+import AdminModal from "../../../actionsComponents/actModalAdmin";
+import imageDelete from '../../../images/delete.svg';
+import imageEdit from '../../../images/editButton.svg';
 
 
-
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) => 
   createStyles({
     root: {
       width: '100%',
@@ -44,7 +45,7 @@ let buttonEdit = (e:any, props:any) =>{
 
 
 let buttonDelete = (e:any, props:any) =>{
-  let elem:any = e.target
+  let elem:any = e.currentTarget
   let id:number = parceId(elem.id)
   if(id === 1){
     alert('admin dont delete!')
@@ -91,13 +92,13 @@ function SimpleTable(props:any) {
                 <TableCell align="right">{el.password}</TableCell>
                 <TableCell align="right">{`${el.isAdmin}`}</TableCell>
                 <TableCell align="right">
-                  <button onClick={(e:any)=>{buttonEdit(e, props)}} id={`ed${el.id}`}>
-                    Edit
+                  <button className="tableUsers-edit" onClick={(e:any)=>{buttonEdit(e, props)}} id={`ed${el.id}`}>
+                    <img src={imageEdit} alt=""/> 
                   </button>
                   </TableCell>
                 <TableCell align="right">
-                  <button onClick={(e:any)=>{buttonDelete(e, props)}} id={`del${el.id}`}>
-                    Delete
+                  <button  className="tableUsers-delete" onClick={(e:any)=>{buttonDelete(e, props)}} id={`del${el.id}`}>
+                    <img src={imageDelete} alt=""/>
                   </button>
                   </TableCell>
               </TableRow>

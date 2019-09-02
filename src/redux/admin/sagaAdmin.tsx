@@ -1,4 +1,4 @@
-import { put, takeEvery, call} from "redux-saga/effects";
+import { put, takeEvery, call, all, race, delay} from "redux-saga/effects";
 import {validSaveAdmin} from "../../actionsComponents/actModalAdmin";
 import {parseEditUser} from "../../actionsComponents/actModalAdmin";
  
@@ -15,21 +15,33 @@ export function* doAdmin(): IterableIterator<any>{
                 }
             );
             yield put({type: 'ADMIN_ARRAY', data})
+            
+            //just download admin home=>download array books
+            const dataBooks = yield call(() => {
+                return fetch('http://localhost:3000/books')
+                        .then(res => res.json())
+                }
+            );
+            yield put({type: 'ARRAY_BOOKS', dataBooks})//dispach to admin BooksReduser
+            //just download admin home=>download array books
+
         }catch(error){}
     })
 
     yield takeEvery('DO_DELETE_USER', function*(id:any){//delete users
+        
         try{
             yield call(() => {//=> query to J-serv => add User
                 fetch(`http://localhost:3000/users/${id.id}`, {
                     method: 'DELETE'
                 })
             })
+            
             const data = yield call(() => {//=> query to J-serv
                 return fetch('http://localhost:3000/users')
                         .then(res => res.json())
                 }
-            );
+            )
             yield put({type: 'NEW_ADMIN_ARRAY', data})
         }catch(error){}
     })
@@ -50,16 +62,17 @@ export function* doAdmin(): IterableIterator<any>{
         let idEditUser = data.data.id;
         try{
             if(validSaveAdmin(data) === 4){
+
                 const serverData = yield call(() => {//=> query to J-serv
                     return fetch(`http://localhost:3000/users/${idEditUser}`)
                             .then(res => res.json())
                     }
                 );
-               
+              
                 let newEditUser = parseEditUser(serverData, data)
 
                 yield call(() => {//=> query to J-serv => add User
-                    fetch(`http://localhost:3000/users/${idEditUser}`, {
+                    return fetch(`http://localhost:3000/users/${idEditUser}`, {
                         method: 'PUT',
                         headers: {
                             'Accept': 'application/json',
@@ -73,10 +86,8 @@ export function* doAdmin(): IterableIterator<any>{
                             .then(res => res.json())
                     }
                 );
-
-                 debugger;
-                
                 yield put({type: 'UPDATE_USER', updateUserArray, newEditUser})
+               
             }else{
                 alert("Error_valid")
             }

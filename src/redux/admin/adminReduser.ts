@@ -52,16 +52,12 @@ export function adminReduser(state:any = initialState, action:any){
 
 
       case 'UPDATE_USER':
-        // console.log(action.updateUserArray)
-        // debugger;
         return {
           ...state, 
           serverArray: action.updateUserArray,
           editUserServer: action.newEditUser
         }
-        default:
-          return{
-            ...state
-        }
+      default:
+        return{...state}
     }
 }
