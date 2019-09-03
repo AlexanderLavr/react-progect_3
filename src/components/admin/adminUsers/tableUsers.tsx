@@ -32,18 +32,12 @@ let parceId = (id:any)=>{
   let result:number = Number(id.match(regExpNum)[0]);
   return result
 } 
-
-
-
 let buttonEdit = (e:any, props:any) =>{
   let elem:any = e.currentTarget
   let id:number = parceId(elem.id)
   props.editUser(id)
   props.openModal()
 }
-
-
-
 let buttonDelete = (e:any, props:any) =>{
   let elem:any = e.currentTarget
   let id:number = parceId(elem.id)

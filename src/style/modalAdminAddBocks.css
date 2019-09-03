@@ -54,3 +54,13 @@
     width: 100px;
     height:  30px;
 }
+
+.edit-tableBooks{
+    border: 0;
+    background: transparent;
+    outline: 0;
+}
+.edit-tableBooks img{
+    width: 25px;
+    cursor: pointer;
+}

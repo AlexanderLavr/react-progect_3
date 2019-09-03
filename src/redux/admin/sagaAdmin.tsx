@@ -31,12 +31,14 @@ export function* doAdmin(): IterableIterator<any>{
     yield takeEvery('DO_DELETE_USER', function*(id:any){//delete users
         
         try{
-            yield call(() => {//=> query to J-serv => add User
+            yield call(() => //=> query to J-serv => add User
                 fetch(`http://localhost:3000/users/${id.id}`, {
                     method: 'DELETE'
                 })
-            })
+            )
             
+            yield delay(2000); //delay 
+
             const data = yield call(() => {//=> query to J-serv
                 return fetch('http://localhost:3000/users')
                         .then(res => res.json())
@@ -81,6 +83,9 @@ export function* doAdmin(): IterableIterator<any>{
                         body: JSON.stringify(newEditUser)//return new Edit User Object
                     })
                 })
+                
+                yield delay(2000); //delay
+
                 const updateUserArray = yield call(() => {//=> query to J-serv
                     return fetch('http://localhost:3000/users')
                             .then(res => res.json())

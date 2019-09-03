@@ -1,10 +1,3 @@
-
-import { connect } from 'react-redux';
-import '../../../style/tableBooks.css';
-import AdminModalBooks from '../../../actionsComponents/actAdminModalAddBooks';  
-
-
-
 import React from 'react';
 import clsx from 'clsx';
 import { createStyles, lighten, makeStyles, Theme } from '@material-ui/core/styles';
@@ -26,29 +19,19 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
+
+import { connect } from 'react-redux';
+import '../../../style/tableBooks.css';
+import AdminModalBooks from '../../../actionsComponents/actAdminModalAddBooks'; 
+import imageEdit from '../../../images/editButton.svg'; 
+
 interface Data {
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
+  title: string;
+  id: string;
+  price: string;
+  amount: string;
 }
-
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-): Data {
-  return { name, calories, fat, carbs };
-}
-
-// const rows = [
-//   createData('Cupcake', 305, 3.7, 67),
-//   createData('Donut', 452, 25.0, 51),
-//   createData('Eclair', 262, 16.0, 24),
-//   createData('Frozen yoghurt', 159, 6.0, 24),
   
-// ];
 
 function desc<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -87,11 +70,10 @@ interface HeadRow {
 }
 
 const headRows: HeadRow[] = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Title' },     
-  { id: 'calories', numeric: true, disablePadding: false, label: 'ID' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Price' },   
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Amount' },    
-//   { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+  { id: 'title', numeric: false, disablePadding: true, label: 'Title' },     
+  { id: 'id', numeric: true, disablePadding: false, label: 'ID' },
+  { id: 'price', numeric: true, disablePadding: false, label: 'Price' },   
+  { id: 'amount', numeric: true, disablePadding: false, label: 'Amount' },    
 ];
 
 interface EnhancedTableProps {
@@ -175,14 +157,11 @@ const useToolbarStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
 
-const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+const EnhancedTableToolbar:React.FC<any> = (props) => {
   const classes = useToolbarStyles();
-  const { numSelected } = props;
-
+  const { numSelected, move , deleteBooks} = props;//////////////
+// console.log(deleteBooks)
   return (
     <Toolbar
       className={clsx(classes.root, {
@@ -196,7 +175,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
           </Typography>
         ) : (
           <Typography variant="h6" id="tableTitle">
-            Nutrition
+            Books
           </Typography>
         )}
       </div>
@@ -204,7 +183,9 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
       <div className={classes.actions}>
         {numSelected > 0 ? (
           <Tooltip title="Delete">
-           <IconButton aria-label="delete" onClick={(e)=>{}}>  {/*//////////////////////////////////////////////////////////////// */}
+           <IconButton
+              onClick = {() => {deleteBooks()}}
+              aria-label="delete" >  
               <DeleteIcon /> 
             </IconButton>
           </Tooltip>
@@ -250,25 +231,17 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function EnhancedTable(props:any) {//sdddddddddddddddddddddddddddddddddddddddd
+function EnhancedTable(props:any) {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
+  const [orderBy, setOrderBy] = React.useState<keyof Data>('amount');
   const [selected, setSelected] = React.useState<string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-   console.log(props.arrayBooks)
-
-  const rows = [  
-    createData('Cupcake', 305, 3.7, 67),
-   
-  ];
-props.arrayBooks.map((elem:any)=>(rows.unshift(createData(`${elem.title}`, Number(elem.id),  Number(elem.price), Number(elem.amount)) ))); 
-
-  console.log(rows)
-
+  
+  let books = props.arrayBooks;
+  
   function handleRequestSort(event: React.MouseEvent<unknown>, property: keyof Data) {
     const isDesc = orderBy === property && order === 'desc';
     setOrder(isDesc ? 'asc' : 'desc');
@@ -277,7 +250,7 @@ props.arrayBooks.map((elem:any)=>(rows.unshift(createData(`${elem.title}`, Numbe
 
   function handleSelectAllClick(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.checked) {
-      const newSelecteds = rows.map(n => n.name);
+      const newSelecteds = books.map((n:any) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -319,15 +292,42 @@ props.arrayBooks.map((elem:any)=>(rows.unshift(createData(`${elem.title}`, Numbe
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, books.length - page * rowsPerPage);
 
+
+  function move(){//checkd delet books to redux
+    let body = selected;
+    if(body.length !== 0){ 
+      props.setDeleteArrayBook(body)
+    } 
+  }
+  function deleteBook(){
+    props.deleteBook(props.checkDeleteBooks)
+  }
+  let parceId = (id:any)=>{
+    let regExpNum = /\d+/;
+    let result:number = Number(id.match(regExpNum)[0]);
+    return result
+  } 
+  function editBook(e:any, props:any){
+    let element:any = e.currentTarget;
+    props.getEditBook(parceId(element.id))
+  }
+ function setModal(){
+  if(props.openAdminModalBooks === true){
+    return <AdminModalBooks/>
+  }
+ }
   return (
-    <div>
-
-        <AdminModalBooks></AdminModalBooks>
+    <div>  
+        {setModal()}
         <div className={classes.root}>
         <Paper className={classes.paper}>
-            <EnhancedTableToolbar numSelected={selected.length} />
+            <EnhancedTableToolbar
+            move={move()}
+            deleteBooks={deleteBook}
+            onClick={()=>{move()}}
+            numSelected={selected.length} />
             <div className={classes.tableWrapper}>
             <Table
                 className={classes.table}
@@ -341,41 +341,47 @@ props.arrayBooks.map((elem:any)=>(rows.unshift(createData(`${elem.title}`, Numbe
                 orderBy={orderBy}
                 onSelectAllClick={handleSelectAllClick}
                 onRequestSort={handleRequestSort}
-                rowCount={rows.length}
+                rowCount={books.length}
                 />
                 <TableBody>
-                {stableSort(rows, getSorting(order, orderBy))
+                {stableSort(books, getSorting(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {
-                    const isItemSelected = isSelected(row.name);
+                    .map((book:any, index) => {
+                    const isItemSelected = isSelected(book.id);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                         <TableRow
-                        hover
-                        onClick={event => handleClick(event, row.name)}
+                        id={book.title}
                         role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
-                        key={row.name}
+                        key={`${book.title}+${book.id}`} 
                         selected={isItemSelected}
                         >
                         <TableCell padding="checkbox">
                             <Checkbox
+                            onClick={event => handleClick(event, book.id)} 
                             checked={isItemSelected}
                             inputProps={{ 'aria-labelledby': labelId }}
                             />
                         </TableCell>
                         <TableCell component="th" id={labelId} scope="row" padding="none">
-                            {row.name}
+                            {book.title}
                         </TableCell>
-                        <TableCell align="right">{row.calories}</TableCell>
-                        <TableCell align="right">{row.fat}</TableCell>
-                        <TableCell align="right">{row.carbs}</TableCell>
-                        {/* <TableCell align="right">{row.protein}</TableCell> */}
+                        <TableCell align="right">{book.id}</TableCell>
+                        <TableCell align="right">{book.price}</TableCell>
+                        <TableCell align="right">{book.amount}</TableCell>
+                        <TableCell align="right">
+                          <button  className="edit-tableBooks"  
+                            onClick={(e)=>{e.preventDefault(); editBook(e, props)}}
+                            id={`el${book.id}`}>
+                            <img src={imageEdit} alt=""/> 
+                          </button>
+                        </TableCell>
                         </TableRow>
-                    );
-                    })}
+                      );
+                    })}  
                 {emptyRows > 0 && (
                     <TableRow style={{ height: 49 * emptyRows }}>
                     <TableCell colSpan={6} />
@@ -387,7 +393,7 @@ props.arrayBooks.map((elem:any)=>(rows.unshift(createData(`${elem.title}`, Numbe
             <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={rows.length}
+            count={books.length}
             rowsPerPage={rowsPerPage} 
             page={page}
             backIconButtonProps={{
@@ -404,7 +410,6 @@ props.arrayBooks.map((elem:any)=>(rows.unshift(createData(`${elem.title}`, Numbe
             control={<Switch checked={dense} onChange={handleChangeDense} />}
             label="Dense padding"
         />
-        
         </div>
         <button id="add-books" onClick={()=>{props.openModaladdBooks()}}>Add Books</button>
     </div>
@@ -415,15 +420,24 @@ props.arrayBooks.map((elem:any)=>(rows.unshift(createData(`${elem.title}`, Numbe
 
 const mapStateToProps = (state: any) => ({
     arrayBooks: state.adminBooks.arrayBooks,
-    // openAdminModalBooks: state.admin.openAdminModalBooks
-    // editUserServer: state.admin.editUserServer
+    checkDeleteBooks: state.adminBooks.checkDeleteBooks,
+    openAdminModalBooks: state.adminBooks.openAdminModalBooks
 });
 
 export default connect(
     mapStateToProps,
     dispatch=>({
         openModaladdBooks: ()=>{
-            dispatch({type: 'OPEN_MODAL_ADD_BOOKS'})
+          dispatch({type: 'OPEN_MODAL_ADD_BOOKS'})
+        },
+        setDeleteArrayBook: (arrayBooks:any[])=>{
+          dispatch({type: 'CHECK_DELET_BOOKS', arrayBooks})
+        },
+        deleteBook: (deleteArrayBooks:any[])=>{
+          dispatch({type: 'DO_DELETE_BOOKS', deleteArrayBooks})
+        },
+        getEditBook: (id:number)=>{
+          dispatch({type: 'DO_EDIT_BOOK', id})
         }
     })
 )(EnhancedTable); 
