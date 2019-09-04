@@ -8,13 +8,11 @@ import Modal from '@material-ui/core/Modal';
 export class AdminModalBooks extends React.Component<any,any>{
 
     state:any = {
-        idBooks: this.props.idBooks,
-        // labelOfModal: this.props.labelOfModal,
         title: this.props.title,
-        price: this.props.title,
-        description: this.props.title,
-        amount: this.props.title,
-        choosePhoto: this.props.title
+        price: this.props.price,
+        description: this.props.description,
+        amount: this.props.amount,
+        choosePhoto: this.props.choosePhoto
     }   
   
     valueChangePhoto(e:any){
@@ -63,10 +61,8 @@ export class AdminModalBooks extends React.Component<any,any>{
                     if(this.props.labelOfModal === 'Add Book'){
                         return this.props.saveNewBook(this.state)
                     }else{
-                        return this.props.editBook(this.state)
+                        return this.props.editBook(this.state, this.props.idBooks)
                     }
-                    
-                    console.log(this.state)
                     // setTimeout(()=>{this.props.closeModalAddBooks()}, 1000)
                     }}>save</button>
                 <button className="close-modal" onClick={()=>{this.props.closeModalAddBooks()}}>close</button>

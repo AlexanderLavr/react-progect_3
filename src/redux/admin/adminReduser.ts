@@ -33,15 +33,10 @@ export function adminReduser(state:any = initialState, action:any){
       case 'EDIT_USER_SERVER':
         return {
           ...state, 
-          editUserServer: action.data
-        }
-
-
-      case 'OPEN_MODAL':
-        return {
-          ...state, 
+          editUserServer: action.data,
           openAdminModal: true
         }
+
       case 'CLOSE_MODAL':
         return {
           ...state, 

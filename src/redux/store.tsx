@@ -9,6 +9,7 @@ import { doHeader } from "./header/sagasHeader";
 import { doAdminBooks } from "./admin/adminBooks/sagasAdminBooks"; 
 import {saveImage} from "./profile/sagasProfile";
 import {doAdmin} from "./admin/sagaAdmin";
+import {doUser} from "./user/sagaUser";
 
 
 export default function configStore(initialState?:any):any{
@@ -32,7 +33,7 @@ export default function configStore(initialState?:any):any{
 
 
     sagaMiddleware.run(function*() {
-        yield all([doRegistration(), doLogin(), doHeader(), saveImage(), doAdmin(), doAdminBooks()]);
+        yield all([doRegistration(), doLogin(), doHeader(), saveImage(), doAdmin(), doAdminBooks(), doUser()]);
     });
     return store
 }

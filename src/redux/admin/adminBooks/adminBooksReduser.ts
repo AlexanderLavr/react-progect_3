@@ -23,7 +23,13 @@ export const initialState: any = {
         case 'CLOSE_MODAL_ADD_BOOKS':
             return {
             ...state,
-            openAdminModalBooks: false
+            openAdminModalBooks: false,
+            labelOfModal: 'Add Book',
+            title: '',
+            price: '',
+            description: '',
+            amount: '',
+            choosePhoto: ''
         }
 
 
@@ -50,8 +56,6 @@ export const initialState: any = {
         }
 
         case 'CHECK_EDIT_BOOK':
-            // console.log(action)
-            // debugger;
             return {
             ...state,
             labelOfModal: 'Edit Book',
@@ -63,6 +67,17 @@ export const initialState: any = {
             openAdminModalBooks: true,
             idBooks: action.id.id
         }
+        case 'SAVE_EDIT_BOOK':
+            return {
+            ...state,
+            labelOfModal: 'Add Book',
+            title: '',
+            price: '',
+            description: '',
+            amount: '',
+            choosePhoto: ''
+        }
+
 
 
 

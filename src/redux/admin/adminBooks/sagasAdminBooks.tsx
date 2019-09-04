@@ -1,6 +1,6 @@
 import { put, takeEvery, call, all, race, delay} from "redux-saga/effects";
 // import request from './requestBook';
-import { parseEditBook } from '../../../actionsComponents/actAdminModalAddBooks';
+import { parseEditBook } from '../../../actionsComponents/actAdminModalBooks';
  
 
 
@@ -27,9 +27,6 @@ export function* doAdminBooks(): IterableIterator<any>{
             yield put({type: 'APDATE_ARRAY_BOOKS', data})
         }catch(error){}
     })
-
-
-
 
     yield takeEvery('DO_DELETE_BOOKS', function*(arrDelBooks:any){
     try{
@@ -65,65 +62,37 @@ export function* doAdminBooks(): IterableIterator<any>{
 
 
     yield takeEvery('DO_SAVE_EDIT_BOOK', function*(editBook:any){
-        
         try{
             const oldBook = yield call(() => {
-                return fetch(`http://localhost:3000/books/${editBook.boockState.idBooks}`)
+                return fetch(`http://localhost:3000/books/${editBook.id}`)
                         .then(res => res.json())
                 }
             );
 
-            let updateBook = parseEditBook(editBook, oldBook)//////////////////////незаконченна!!!!!!
-                debugger;
+            let updateBook = parseEditBook(editBook, oldBook)
+             
             yield call(() => {
-                return fetch('http://localhost:3000/books', {
-                    method: 'POST',
+                return fetch(`http://localhost:3000/books/${editBook.id}`, {
+                    method: 'PUT',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(updateBook)//return new Edit User Object
+                    body: JSON.stringify(updateBook)//return new Edit BOOK Object
                 })
             })
-            
-            yield put({type: 'CHECK_EDIT_BO'})
+
+            yield delay(1000)
+
+            const newArrBooks = yield call(() => {
+                return fetch('http://localhost:3000/books')
+                        .then(res => res.json())
+                }
+            )
+            yield put({type: 'NEW_BOOKS_ARR', newArrBooks})
+            yield put({type: 'SAVE_EDIT_BOOK'})
+            yield delay(500)
+            yield put({type: 'CLOSE_MODAL_ADD_BOOKS'})
         }catch(error){}
     })
-
-    // yield takeEvery('DO_SAVE_EDIT_USER', function*(data:any){//sava edit users
-    //     let idEditUser = data.data.id;
-    //     try{
-    //         if(validSaveAdmin(data) === 4){
-
-    //             const serverData = yield call(() => {//=> query to J-serv
-    //                 return fetch(`http://localhost:3000/users/${idEditUser}`)
-    //                         .then(res => res.json())
-    //                 }
-    //             );
-              
-    //             let newEditUser = parseEditUser(serverData, data)
-
-    //             yield call(() => {//=> query to J-serv => add User
-    //                 return fetch(`http://localhost:3000/users/${idEditUser}`, {
-    //                     method: 'PUT',
-    //                     headers: {
-    //                         'Accept': 'application/json',
-    //                         'Content-Type': 'application/json'
-    //                     },
-    //                     body: JSON.stringify(newEditUser)//return new Edit User Object
-    //                 })
-    //             })
-    //             const updateUserArray = yield call(() => {//=> query to J-serv
-    //                 return fetch('http://localhost:3000/users')
-    //                         .then(res => res.json())
-    //                 }
-    //             );
-    //             yield put({type: 'UPDATE_USER', updateUserArray, newEditUser})
-               
-    //         }else{
-    //             alert("Error_valid")
-    //         }
-        
-    //     }catch(error){}
-    // })
 }

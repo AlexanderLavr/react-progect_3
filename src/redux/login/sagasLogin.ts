@@ -55,6 +55,8 @@ export function* doLogin(): IterableIterator<any>{
                         admin: admin,
                         imageProfile: imageProfile
                     }))
+                    const selectBooks:[] = [];//create store for books
+                    localStorage.setItem('selectBoock', JSON.stringify(selectBooks))
                     yield put({type:LoginProc.LOGIN_SUCCESS_ADMIN, obj, imageProfile, idUser});//=>change state in store
                     arguments[0].history.push('./adminHome');
                 }

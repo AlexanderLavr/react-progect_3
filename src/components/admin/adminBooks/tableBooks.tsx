@@ -22,7 +22,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 
 import { connect } from 'react-redux';
 import '../../../style/tableBooks.css';
-import AdminModalBooks from '../../../actionsComponents/actAdminModalAddBooks'; 
+import AdminModalBooks from '../../../actionsComponents/actAdminModalBooks'; 
 import imageEdit from '../../../images/editButton.svg'; 
 
 interface Data {
@@ -160,8 +160,7 @@ const useToolbarStyles = makeStyles((theme: Theme) =>
 
 const EnhancedTableToolbar:React.FC<any> = (props) => {
   const classes = useToolbarStyles();
-  const { numSelected, move , deleteBooks} = props;//////////////
-// console.log(deleteBooks)
+  const { numSelected, move , deleteBooks} = props;
   return (
     <Toolbar
       className={clsx(classes.root, {

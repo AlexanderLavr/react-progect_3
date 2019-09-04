@@ -33,8 +33,8 @@ export default connect(
         saveNewBook: (boockState:{})=>{
             dispatch({type: 'DO_SAVE_BOOK', boockState})
         },
-        editBook: (boockState:{})=>{
-            dispatch({type: 'DO_SAVE_EDIT_BOOK', boockState})
+        editBook: (boockState:{}, id:number)=>{
+            dispatch({type: 'DO_SAVE_EDIT_BOOK', boockState, id})
         }
     })
   )(AdminModalBooks);

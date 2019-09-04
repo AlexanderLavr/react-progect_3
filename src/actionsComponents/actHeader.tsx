@@ -1,5 +1,3 @@
-// import React from 'react';
-// import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import {HeaderNav} from '../components/header';
 import {HeaderProc} from '../redux/header/actions';
@@ -10,7 +8,8 @@ const mapStateToProps = (state: any) => ({
     loginPassword: state.login.loginPassword,
     userIsAdmin: state.login.userIsAdmin,
 
-    imageProfile: state.login.imageProfile
+    imageProfile: state.login.imageProfile,
+    countBook: state.userBooks.countBook
 });
 
 

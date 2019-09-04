@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 
 
-import AdminModal from "../../../actionsComponents/actModalAdmin";
+import AdminModal from "../../../actionsComponents/actAdminModalUsers";
 import imageDelete from '../../../images/delete.svg';
 import imageEdit from '../../../images/editButton.svg';
 
@@ -36,7 +36,6 @@ let buttonEdit = (e:any, props:any) =>{
   let elem:any = e.currentTarget
   let id:number = parceId(elem.id)
   props.editUser(id)
-  props.openModal()
 }
 let buttonDelete = (e:any, props:any) =>{
   let elem:any = e.currentTarget
@@ -53,7 +52,7 @@ let buttonDelete = (e:any, props:any) =>{
 function SimpleTable(props:any) {
   const classes = useStyles();
   let checkModal = () =>{
-    if(Object.keys(props.editUserServer).length !== 0){
+    if(props.openAdminModal){
       return <AdminModal />
     }
   }
@@ -118,9 +117,6 @@ export default connect(
         }, 
         editUser: (id:number)=>{
           dispatch({type: 'DO_EDIT_USER', id})
-        },
-        openModal: ()=>{
-          dispatch({type: 'OPEN_MODAL'})
         }
     })
 )(SimpleTable);

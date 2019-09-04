@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {AdminModal} from '../components/admin/adminUsers/modal';
+import {AdminModal} from '../components/admin/adminUsers/modalUsers';
 
 
 export const validSaveAdmin = (obj:any) => {

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-// import {headerUser} from '../actionsComponents/actHeaderStart';
 import  shopingCart  from '../images/shopping-cart.svg';
-
+import Badge from '@material-ui/core/Badge';
 
 export class HeaderNav extends React.Component<any>{
     state:any={
@@ -13,7 +12,7 @@ export class HeaderNav extends React.Component<any>{
         this.setState({ active: !currentState });
     };
     logOut(){
-        localStorage.removeItem('user')
+        localStorage.clear()
         this.props.logOut()
     }
      render(){
@@ -33,7 +32,16 @@ export class HeaderNav extends React.Component<any>{
                             </ul>
                         </li>
                         <li><img src={this.props.imageProfile} className="headerIcon" alt="photo profile"/></li>
-                        <li><img src={shopingCart} className="headerIcon" alt="cart"/></li>
+                        <li>
+                            <div style={{position: 'relative'}}>
+                                <Link to="./shopingCart"><img src={shopingCart} className="headerIcon" alt="cart"/></Link>
+                                <Badge style={{
+                                    position: 'absolute',
+                                    top: '2px',
+                                    right: '0'
+                                }} color="primary" badgeContent={this.props.countBook}> </Badge>   
+                            </div>
+                        </li>
                     </ul>
                 </li>
             </ul>

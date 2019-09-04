@@ -1,6 +1,6 @@
 import { put, takeEvery, call, all, race, delay} from "redux-saga/effects";
-import {validSaveAdmin} from "../../actionsComponents/actModalAdmin";
-import {parseEditUser} from "../../actionsComponents/actModalAdmin";
+import {validSaveAdmin} from "../../actionsComponents/actAdminModalUsers";
+import {parseEditUser} from "../../actionsComponents/actAdminModalUsers";
  
 
 

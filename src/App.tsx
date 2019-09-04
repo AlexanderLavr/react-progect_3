@@ -8,14 +8,21 @@ import HeaderNav from './actionsComponents/actHeader';
 import Login from './actionsComponents/actLogin';
 import Main from './components/main';
 import Regestration from './actionsComponents/actRegictration';
-import UserHome from './components/user/userHome';//
-import AdminHome from './actionsComponents/actAdminHome';//
+import UserHome from './actionsComponents/actUserHome';
+import AdminHome from './actionsComponents/actAdminHome';
 import Profile from './actionsComponents/actProfile';
+
+import viewBook from './components/user/viewBook';
+import shopingCart from './components/user/shopingCart';
+
+import { connect } from 'react-redux';
+import { render } from 'react-dom';
 
 
 const store:any = configureStore();
 
-const App: React.FC = () => {
+const App: React.FC = (props:any) => {
+  console.log(props)
   return (
     <Provider store={store}>
       <Router>
@@ -26,11 +33,10 @@ const App: React.FC = () => {
         <Route path="/userHome" component={UserHome} />
         <Route path="/adminHome" component={AdminHome} />
         <Route path="/profile" component={Profile} />
-
-        {/* <Route exact path="/error" component={GeneralError} /> */}
+        <Route path="/shopingCart" component={shopingCart} />
+        <Route path="/viewBook/:id" component={viewBook} /> 
       </Router>
     </Provider>
   );
 }
-
 export default App;

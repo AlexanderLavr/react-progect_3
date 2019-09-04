@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../../style/modalAdmin.css'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+// import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { connect } from 'react-redux';
-import image from '../../images/delete.svg'
+// import { connect } from 'react-redux';
+// import image from '../../images/delete.svg'
 
 
 
@@ -18,8 +18,6 @@ export class AdminModal extends React.Component<any,any>{
     isAdmin: this.props.editUserServer.isAdmin,
 }   
   
-  
- 
   changeInp=(e:any)=>{
     this.setState({[e.target.placeholder]:e.target.value})
   }
@@ -31,8 +29,6 @@ export class AdminModal extends React.Component<any,any>{
     }
   }
   render(){ 
-    
-    // console.log(this.props.editUserServer)
     return(
       <Modal open={this.props.openAdminModal} className="modal-admin">
         <div  className="modal-container">
