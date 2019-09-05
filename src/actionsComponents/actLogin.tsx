@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import {Login} from '../components/login';
-import {LoginProc} from '../redux/login/actions';
+import { Login } from '../components/login';
+import { LoginProc } from '../redux/login/actions';
 
 
 export const parseRequestServer = (data:any, loginObj:any) =>{
@@ -57,7 +57,7 @@ export const validLogin = (obj:any) => {
 }
 
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: any):{} => ({
     emailUser: state.regestration.email,
     passwordUser: state.regestration.password,
 

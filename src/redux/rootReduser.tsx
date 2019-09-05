@@ -15,5 +15,4 @@ const rootReducer: Reducer = combineReducers<any>({
     adminBooks: adminBooksReduser,
     userBooks: userReduser
 });
-  
 export default rootReducer;

@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 
 
-import AdminModal from "../../../actionsComponents/actAdminModalUsers";
+import AdminModal from '../../../actionsComponents/actAdminModalUsers';
 import imageDelete from '../../../images/delete.svg';
 import imageEdit from '../../../images/editButton.svg';
 

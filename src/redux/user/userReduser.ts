@@ -1,12 +1,16 @@
-// import { DH_UNABLE_TO_CHECK_GENERATOR } from "constants";
+interface UserState {
+  countBook:number,
+  serverBooks:{},
+  selectBook:{}
+}
 
-export const initialState: any = {
+export const initialState:UserState = {
   countBook: 0,
   serverBooks: {},
   selectBook:{}
 };
 
-export function userReduser(state:any = initialState, action:any){
+export function userReduser(state = initialState, action:any){
   switch (action.type){
     case 'ARRAY_BOOKS':
       return {

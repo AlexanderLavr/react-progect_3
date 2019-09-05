@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import {HeaderNav} from '../components/header';
-import {HeaderProc} from '../redux/header/actions';
+import { HeaderNav } from '../components/header';
+import { HeaderProc } from '../redux/header/actions';
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: any):{} => ({
     loginSuc: state.login.loginSuccess,
     loginEmail: state.login.loginEmail,
     loginPassword: state.login.loginPassword,
@@ -13,7 +13,6 @@ const mapStateToProps = (state: any) => ({
 });
 
 
-// export default connect(mapStateToProps)(HeaderNav);
 export default connect(
     mapStateToProps,
     dispatch=>({

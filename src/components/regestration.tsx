@@ -1,9 +1,10 @@
 import React from 'react';
+import { RegistrationState } from '../redux/regestration/actions';
 
 const defaultImageProfile:string = 'images/users.svg';
-export class RegistrationComponent extends React.Component<any>{
 
-    state:any = {
+export class RegistrationComponent extends React.Component<any>{
+    state:RegistrationState = {
         firstname: '',
         secondname: '',
         email: '',
@@ -12,7 +13,6 @@ export class RegistrationComponent extends React.Component<any>{
         imageProfile: defaultImageProfile
     }
 
-    
     submitRegistration = (e: any)=>{
         e.preventDefault();
         let {history} = this.props;

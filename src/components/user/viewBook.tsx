@@ -25,7 +25,7 @@ class viewBook extends React.Component<any>{
     }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state:any) => ({
     selectBook: state.userBooks.selectBook
 });
 export default connect(mapStateToProps)(viewBook); 

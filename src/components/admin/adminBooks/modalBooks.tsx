@@ -2,12 +2,16 @@ import React from 'react';
 import '../../../style/modalAdminAddBocks.css';
 import Modal from '@material-ui/core/Modal';
 
-
-
+interface AdminModalBooksState {
+    title: string,
+    price: string,
+    description: string,
+    amount: string,
+    choosePhoto: string
+}
 
 export class AdminModalBooks extends React.Component<any,any>{
-
-    state:any = {
+    state:AdminModalBooksState = {
         title: this.props.title,
         price: this.props.price,
         description: this.props.description,
@@ -51,7 +55,7 @@ export class AdminModalBooks extends React.Component<any,any>{
                     </div>
                     <div className="holder-choose-bookPhoto">
                         <input type="file" onChange={(e)=>{this.valueChangePhoto(e)}}/>
-                        <img src={this.state.choosePhoto} id="ptotoOfBook" />
+                        <img src={this.state.choosePhoto} id="ptotoOfBook" alt=""/>
                     </div>
                     <div className="holder-descriptions" onChange={(e)=>{this.changeTextArea(e)}}>
                         <textarea defaultValue={this.state.description} ></textarea>

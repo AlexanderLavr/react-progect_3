@@ -1,12 +1,24 @@
 import { put, takeEvery, call, all, race, delay} from 'redux-saga/effects';
-import {getMatch} from '../../actionsComponents/actUserHome';
+import { getMatch, matchIs, countTotalBooks } from '../../actionsComponents/actUserHome';
  
-
-export function* doUser(): IterableIterator<any>{
+interface idTypes{
+    id:number,
+    type:string
+}
+interface Book{
+    amount: string,
+    choosePhoto: string,
+    description: string,
+    id: number,
+    price: string,
+    title: string,
+    totalCount?: number,
+}
+export function* doUser():IterableIterator<any>{
     yield takeEvery('DO_USER', function*(){//start array books
         //------------------------------defoult count books in cart
         let selectBooksArr:any = JSON.parse(localStorage.getItem("selectBoock") || "[]");
-        let countBooksInCart:number = selectBooksArr.length;
+        let countBooksInCart:number = countTotalBooks(selectBooksArr);
         yield put({type: 'START_ADD_BOOK_TO_CART', countBooksInCart})
         //------------------------------defoult count books in cart
 
@@ -18,7 +30,7 @@ export function* doUser(): IterableIterator<any>{
         yield put({type: 'ARRAY_BOOKS', dataBooks})//default array books in page uder
     })
 
-    yield takeEvery('SELECT_BOOK', function*(id:any){// select book for watch more details
+    yield takeEvery('SELECT_BOOK', function*(id:idTypes){// select book for watch more details
         try{
             const selectBook = yield call(() => {
                 return fetch(`http://localhost:3000/books/${id.id}`)
@@ -29,10 +41,10 @@ export function* doUser(): IterableIterator<any>{
         }catch(error){}
     })
 
-    yield takeEvery('ADD_BOOK', function*(id:any){//add books to cart in page USER
-        let selectBooksArr:any = JSON.parse(localStorage.getItem("selectBoock") || "[]");
+    yield takeEvery('ADD_BOOK', function*(id:idTypes){//add books to cart in page USER
+        let selectBooksArr = JSON.parse(localStorage.getItem("selectBoock") || "[]"); 
         if(!getMatch(selectBooksArr, id.id)){//check in match books
-            const data = yield call(() => {
+            const data:Book = yield call(() => {
                 return fetch(`http://localhost:3000/books/${id.id}`)
                         .then(res => res.json())
                 }
@@ -42,7 +54,8 @@ export function* doUser(): IterableIterator<any>{
             localStorage.setItem('selectBoock', JSON.stringify(selectBooksArr))
             yield put({type: 'ADD_BOOK_TO_CART'})//++number in img cart
         }else{
-            alert('Книга уже добавлена в корзину!')
+            matchIs(selectBooksArr, id.id)//if isMatch => totalcount++
+            yield put({type: 'ADD_BOOK_TO_CART'})
         } 
     })
 }

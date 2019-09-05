@@ -1,16 +1,10 @@
 import { connect } from 'react-redux';
-import {UserHome} from '../components/user/userHome';
-// import {HeaderProc} from '../redux/header/actions';
+import { UserHome } from '../components/user/userHome';
 
 
-let parceId = (id:any):number=>{
-    let regExpNum = /\d+/;
-    let result = Number(id.match(regExpNum)[0]);
-    return result
-}  
 
 
-export const getMatch = (selectBooksArr:any, id:number)=>{// check on match
+export const getMatch = (selectBooksArr:any, id:number):boolean=>{// check on match
     let match:boolean = false;
     for(let element of selectBooksArr){
         if(id === element.id){
@@ -19,7 +13,26 @@ export const getMatch = (selectBooksArr:any, id:number)=>{// check on match
     }
     return match
 }
-
+export const matchIs = (selectBooksArr:any, id:number):void =>{// add ismatch
+    for(let element of selectBooksArr){
+        if(id === element.id){
+            element.totalCount++
+        }
+    }
+    localStorage.setItem('selectBoock', JSON.stringify(selectBooksArr))
+}
+let parceId = (id:any):number=>{
+    let regExpNum = /\d+/;
+    let result = Number(id.match(regExpNum)[0]);
+    return result
+}  
+export const countTotalBooks = (arr:any):number =>{
+    let totalBooks:number = 0;
+    for(let element of arr){
+        totalBooks += element.totalCount
+    }
+    return totalBooks
+}
 
 export const countTotalPrice = (arr:any):number =>{
     let totalPrace:number = 0;
@@ -40,7 +53,7 @@ export const buttonDelete = (e:any, arr:any):void =>{
     }
     localStorage.setItem('selectBoock', JSON.stringify(arr))
 }
-export const buttonAdd = (e:any, arr:any) =>{
+export const buttonAdd = (e:any, arr:any):void =>{
     let buttonAdd:HTMLButtonElement = e.target;
     let id = parceId(buttonAdd.id)
     for(let element of arr){
@@ -56,7 +69,7 @@ export const buttonAdd = (e:any, arr:any) =>{
 } 
 
 
-export const buttonMult = (e:any, arr:any) =>{
+export const buttonMult = (e:any, arr:any):void =>{
     let buttonMult:HTMLButtonElement = e.target;
     let id = parceId(buttonMult.id)
     for(let element of arr){
@@ -71,16 +84,16 @@ export const buttonMult = (e:any, arr:any) =>{
     }
 } 
 
-export const getState = () =>{
+export const getState = ():[] =>{
     localStorage.getItem(('selectBoock') || '[]')
-    let selectBooksArr:any = JSON.parse(localStorage.getItem('selectBoock') || '[]');
+    let selectBooksArr:[] = JSON.parse(localStorage.getItem('selectBoock') || '[]');
     return selectBooksArr
 } 
 
 
 
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: any):{} => ({
     serverBooks: state.userBooks.serverBooks,
 });
 export default connect(

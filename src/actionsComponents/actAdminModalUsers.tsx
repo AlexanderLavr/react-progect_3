@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import {AdminModal} from '../components/admin/adminUsers/modalUsers';
+import { AdminModal } from '../components/admin/adminUsers/modalUsers';
 
 
-export const validSaveAdmin = (obj:any) => {
+export const validSaveAdmin = (obj:any):{} => {
     let stateValid = 0;
     const inpRegExpr = new RegExp(/^[a-zA-Z]{3,}$/);
     const passWordExpr = new RegExp(/^[0-9]{3,}$/);
@@ -23,8 +23,6 @@ export const validSaveAdmin = (obj:any) => {
     return stateValid 
     
 }
-
-
 
 export const parseEditUser = (serverData:{}, data:any)=>{
     let newServerData = JSON.parse(JSON.stringify(serverData))

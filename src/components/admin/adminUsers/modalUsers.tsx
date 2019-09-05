@@ -1,15 +1,18 @@
 import React from 'react';
 import '../../../style/modalAdmin.css'
-// import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-// import { connect } from 'react-redux';
-// import image from '../../images/delete.svg'
 
-
+interface AdminModalState {
+  id: number,
+  firstname: string,
+  secondname: string,
+  email: string,
+  password: string,
+  isAdmin: string,
+}
 
 export class AdminModal extends React.Component<any,any>{
-
-  state:any = {
+  state:AdminModalState = {
     id: this.props.editUserServer.id,
     firstname: this.props.editUserServer.firstname,
     secondname: this.props.editUserServer.secondname,

@@ -1,13 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import {RPr, valReg} from '../../redux/regestration/actions';
-import {parseRequestServer, validRegistration} from '../../actionsComponents/actRegictration';
-import { any } from 'prop-types';
-import  defaulProfile  from '../images/users.svg';
+import { RPr, valReg } from '../../redux/regestration/actions';
+import { parseRequestServer, validRegistration } from '../../actionsComponents/actRegictration';
+
 
 
 export function* doRegistration(): IterableIterator<any>{
     yield takeEvery('DO_REGISTER', function*(obj:any){
-
         try {
             let stateValid, errorObj
             let resultValid = {
@@ -43,13 +41,8 @@ export function* doRegistration(): IterableIterator<any>{
             }else{
                 yield put({type: valReg.ERROR_VALIDE, errorObj})
             }
-        } catch(error) {
-            
-        };
-        
+        }catch(error){};
     })
-    
-
 }
 
    

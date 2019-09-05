@@ -1,16 +1,20 @@
 import React from 'react';
 
+interface LoginState {
+    email: string,
+    password: string
+}
 
 export class Login extends React.Component<any>{
-    state:any = {
+    state:LoginState = {
         email: this.props.emailUser,
-        password: this.props.passwordUser,
+        password: this.props.passwordUser
     }
     
-    changeInp=(e:any)=>{
+    changeInp(e:any):void{
         this.setState({[e.target.name]:e.target.value})
     }
-    eventLogin(e:any){
+    eventLogin(e:any):void{
         e.preventDefault();
         let {history} = this.props;
         this.props.doLogin(this.state, history)

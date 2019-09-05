@@ -7,10 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
-
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 
@@ -28,18 +26,18 @@ let parceId = (id:any)=>{
     let result:number = Number(id.match(regExpNum)[0]);
     return result
   } 
-function selectBook(e:any, props:any){
+function selectBook(e:any, props:any):void{
     let element:any = e.currentTarget;
     props.selBook(parceId(element.id))
 }
 
-function addBook(e:any, props:any){
+function addBook(e:any, props:any):void{
     let element:any = e.currentTarget;
     props.addBooks(parceId(element.id))
 }
 
 
-function MediaCard(props:any) {
+function MediaCard(props:any){
     const classes = useStyles();
     const {title, image, description, id}=props
 

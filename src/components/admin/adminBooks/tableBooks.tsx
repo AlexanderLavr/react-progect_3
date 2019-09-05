@@ -18,8 +18,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-
-
 import { connect } from 'react-redux';
 import '../../../style/tableBooks.css';
 import AdminModalBooks from '../../../actionsComponents/actAdminModalBooks'; 
@@ -32,7 +30,6 @@ interface Data {
   amount: string;
 }
   
-
 function desc<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;

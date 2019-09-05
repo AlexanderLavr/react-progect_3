@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {getState, countTotalPrice, buttonDelete, buttonAdd, buttonMult} from '../../actionsComponents/actUserHome';
+import { getState, countTotalPrice, buttonDelete, buttonAdd, buttonMult, countTotalBooks } from '../../actionsComponents/actUserHome';
 
-
+interface stateShopingCart{
+    selectBooksArr: []
+}
 class shopingCart extends React.Component<any>{
-    state:any={
+    state:stateShopingCart={
         selectBooksArr: []
     }
-
     componentDidMount(){
         this.setState({selectBooksArr: getState()})
     }
-
     render(){
         let selectBooksArr = this.state.selectBooksArr;
-        this.props.countBooks(this.state.selectBooksArr.length)
+        this.props.countBooks(countTotalBooks(selectBooksArr))
         if(selectBooksArr.length !== 0){ 
             return (
                 <div style={{

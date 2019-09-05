@@ -1,6 +1,5 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import {Profile} from '../components/profile';
+import { Profile } from '../components/profile';
 
 
 export const parceJsonFile = (data:any, img:string) =>{
@@ -8,7 +7,7 @@ export const parceJsonFile = (data:any, img:string) =>{
     return data
 }
 
-export const mapStateToProps = (state: any) => ({
+export const mapStateToProps = (state: any):{} => ({
     email: state.login.email,
     password: state.password,
     imageProfile: state.login.imageProfile,

@@ -1,8 +1,8 @@
-import {LoginProc} from '../../redux//login/actions';
-import {HeaderProc} from '../../redux/header/actions';
+import { LoginProc, loginInitialState} from '../../redux//login/actions';
+import { HeaderProc }from '../../redux/header/actions';
 
 
-export const initialState: any = {
+const initialState:loginInitialState = {
   doLogin: false,
   loginEmail: '',
   loginPassword: '',
@@ -15,14 +15,14 @@ export const initialState: any = {
   userIsAdmin: false
 };
 
-export function loginReduser(state:any = initialState, action:any){
+export function loginReduser(state:loginInitialState = initialState, action:any){
     switch (action.type){
-      case 'DO_LOGIN':
+      case LoginProc.DO_LOGIN:
         return {
           ...state, 
           doLogin: true
         }
-      case 'ERROR_VALIDE':
+      case LoginProc.ERROR_VALIDE:
         let obj = action.errorObj
         return {
           ...state, 
@@ -30,7 +30,7 @@ export function loginReduser(state:any = initialState, action:any){
           logErrorEmail: obj.logErrorEmail,
           logErrorPassword: obj.logErrorPassword
         }
-      case 'LOGIN_SUCCESS_USER':
+      case LoginProc.LOGIN_SUCCESS_USER:
         let objSuccUser = action.obj;
         return {
           ...state, 
@@ -40,7 +40,7 @@ export function loginReduser(state:any = initialState, action:any){
           imageProfile: action.imageProfile,//take this with json-server
           idUser: action.idUser//take this with json-server
         }
-      case 'LOGIN_SUCCESS_ADMIN':
+      case LoginProc.LOGIN_SUCCESS_ADMIN:
         let objSuccAdmin = action.obj;
         return {
           ...state, 
@@ -51,7 +51,7 @@ export function loginReduser(state:any = initialState, action:any){
           imageProfile: action.imageProfile,//take this with json-server
           idUser: action.idUser//take this with json-server
         }
-      case 'LOGIN_ERROR':
+      case LoginProc.LOGIN_ERROR:
           return {
             ...state, 
             loginError: action.error,

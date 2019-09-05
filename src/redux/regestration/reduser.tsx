@@ -1,26 +1,27 @@
+import { RegistrationinitialState } from './actions';
 
-export const initialState: any = {
-    firstname: '',
-    secondname: '',
-    email: '',
-    password: '',
+export const initialState:RegistrationinitialState = {
+  firstname: '',
+  secondname: '',
+  email: '',
+  password: '',
 
-    errorFirstname: '',
-    errorSecondname: '',
-    errorEmail: '',
-    errorPassword: '',
-    
-    isAdmin: false,
-    startRegister: false,
-    userExist: false,
-    successRegister: false,
-    error: '',
-    imageProfile: ''
+  errorFirstname: '',
+  errorSecondname: '',
+  errorEmail: '',
+  errorPassword: '',
+  
+  isAdmin: false,
+  startRegister: false,
+  userExist: false,
+  successRegister: false,
+  error: '',
+  imageProfile: ''
 };
 
-export function regestrationReduser(state:any = initialState, action:any){
 
-  // debugger;
+
+export function regestrationReduser(state:RegistrationinitialState = initialState, action:any){
   switch (action.type){
      case 'DO_REGISTER':
         return {
@@ -42,7 +43,6 @@ export function regestrationReduser(state:any = initialState, action:any){
           errorSecondname: '',
           errorEmail: '',
           errorPassword: ''
-          // error: action.error
         }
       }
       case 'USER_EXSIST':

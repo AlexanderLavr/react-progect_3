@@ -10,3 +10,29 @@ export enum valReg{
 }
 
 
+export interface RegistrationState{
+    firstname: string,
+    secondname: string,
+    email: string,
+    password: string,
+    isAdmin: boolean,
+    imageProfile: string
+} 
+
+export interface RegistrationinitialState{
+    firstname: string,
+    secondname: string,
+    email: string,
+    password: string,
+    errorFirstname: string,
+    errorSecondname: string,
+    errorEmail: string,
+    errorPassword: string,
+    error: string,
+    imageProfile: string
+    isAdmin: boolean,
+    startRegister: boolean,
+    userExist: boolean,
+    successRegister: boolean
+  }
+  

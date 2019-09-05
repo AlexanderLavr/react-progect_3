@@ -19,9 +19,9 @@ export function* saveImage(): IterableIterator<any>{
                     body: JSON.stringify(parceJsonFile(data, saveImg.saveImg.img))
                 })
             })
-            
             let localStoreObj:any = localStorage.getItem('user')//work with local Store
-            let parseLocalStoreObg:any = JSON.parse(localStoreObj)
+            
+            let parseLocalStoreObg = JSON.parse(localStoreObj)
             let{
                 doLogin,
                 loginSuccess,
@@ -43,9 +43,7 @@ export function* saveImage(): IterableIterator<any>{
             }))//work with local Store
             yield put({type: 'SAVE_PHOTO', saveImg})
         }catch(error){}
-        
-        
-       
+
     })
 }
  
