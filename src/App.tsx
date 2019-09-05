@@ -16,8 +16,7 @@ import shopingCart from './components/user/shopingCart';
 
 const store:any = configureStore();
 
-const App: React.FC = (props:any) => {
-  console.log(props)
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <Router>
