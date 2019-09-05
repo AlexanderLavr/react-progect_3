@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 interface LoginState {
     email: string,
@@ -11,7 +12,7 @@ export class Login extends React.Component<any>{
         password: this.props.passwordUser
     }
     
-    changeInp(e:any):void{
+    changeInp = (e:any):void =>{
         this.setState({[e.target.name]:e.target.value})
     }
     eventLogin(e:any):void{
@@ -19,7 +20,14 @@ export class Login extends React.Component<any>{
         let {history} = this.props;
         this.props.doLogin(this.state, history)
     }
+
     render(){
+        let redirect:any = localStorage.getItem('isAdmin');
+        if(redirect === 'true'){
+            return <Redirect to='/adminHome' />
+        }else if(redirect === 'false'){
+            return <Redirect to='/userHome' />
+        }
         return(
             <div className="containerLogin">
                 <h2>LogIn</h2>

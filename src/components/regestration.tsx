@@ -1,5 +1,6 @@
 import React from 'react';
 import { RegistrationState } from '../redux/regestration/actions';
+import { Redirect } from 'react-router-dom';
 
 const defaultImageProfile:string = 'images/users.svg';
 
@@ -12,7 +13,7 @@ export class RegistrationComponent extends React.Component<any>{
         isAdmin: false,
         imageProfile: defaultImageProfile
     }
-
+     
     submitRegistration = (e: any)=>{
         e.preventDefault();
         let {history} = this.props;
@@ -24,6 +25,12 @@ export class RegistrationComponent extends React.Component<any>{
     }
 
     render(){
+        let redirect:any = localStorage.getItem('isAdmin');
+        if(redirect === 'true'){
+            return <Redirect to='/adminHome' />
+        }else if(redirect === 'false'){
+            return <Redirect to='/userHome' />
+        }
         return(
             <div className="containerRegestration">
               <h2>Regestration</h2>
