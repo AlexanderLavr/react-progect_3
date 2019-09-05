@@ -2,19 +2,14 @@ import React from 'react';
 import MediaCard from './userCarts';
 
 export class UserHome extends React.Component<any>{
-
-    
     render(){
-        
         if(Object.keys(this.props.serverBooks).length !== 0){
             return ( 
-            <div
-                style={{
+            <div style={{
                     width: '100%',
                     display: 'flex',
                     flexWrap: 'wrap'
-                }}
-            >
+            }}>
                 {this.props.serverBooks.map((elem:any, i:number)=>{
                     return <MediaCard
                         key={i}
@@ -30,7 +25,6 @@ export class UserHome extends React.Component<any>{
                 <div></div>
             )
         }
-        
     }
     componentDidMount(){
         this.props.queryServer()
