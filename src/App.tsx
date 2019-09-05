@@ -13,9 +13,6 @@ import Profile from './actionsComponents/actProfile';
 import viewBook from './components/user/viewBook';
 import shopingCart from './components/user/shopingCart';
 
-// import { connect } from 'react-redux';
-// import { render } from 'react-dom';
-
 
 const store:any = configureStore();
 
