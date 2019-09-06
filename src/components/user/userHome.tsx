@@ -1,5 +1,6 @@
 import React from 'react';
 import MediaCard from './userCarts';
+import { Redirect } from 'react-router-dom';
 
 export class UserHome extends React.Component<any>{
     render(){

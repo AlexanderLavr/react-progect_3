@@ -23,9 +23,10 @@ export class Login extends React.Component<any>{
 
     render(){
         let redirect:any = localStorage.getItem('isAdmin');
-        if(redirect === 'true'){
+        redirect = JSON.parse(redirect)
+        if(redirect === true){
             return <Redirect to='/adminHome' />
-        }else if(redirect === 'false'){
+        }else if(redirect === false){
             return <Redirect to='/userHome' />
         }
         return(
